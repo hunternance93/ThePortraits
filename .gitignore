@@ -1,0 +1,20 @@
+#Ignore Folders:
+[Bb]uilds/
+[Tt]emp/
+[Ll]ibrary/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+.idea/
+
+*.opendb
+*.sln
+*.csproj
+*.unityproj
+*.tmp
+*.user
+*.userprefs
+*.apk
+*.suo
+.DS_Store
+.gitconfig
