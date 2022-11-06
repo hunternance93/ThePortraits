@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5487137548545282323}
   - component: {fileID: 5487137548545282320}
   - component: {fileID: 5487137548545282321}
-  m_Layer: 12
+  m_Layer: 6
   m_Name: JournalCollectible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
