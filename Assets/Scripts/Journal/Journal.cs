@@ -111,7 +111,7 @@ public class Journal : MonoBehaviour
 
     public void ToggleBackground()
     {
-        journalImage.gameObject.SetActive(!journalImage.gameObject.activeSelf);
+        //journalImage.gameObject.SetActive(!journalImage.gameObject.activeSelf);
     }
 
     public void NextEntry()
@@ -179,7 +179,7 @@ public class Journal : MonoBehaviour
             count = $" - {entry.areaOrder} / {areaCount}";
         }
 
-        journalImage.gameObject.SetActive(true);
+        journalImage.gameObject.SetActive(false);
 
         if (GameManager.instance.Player.JournalEntries.Contains(entry))
         {

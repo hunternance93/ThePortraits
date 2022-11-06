@@ -25,6 +25,8 @@ public class CanvasFadeOut : MonoBehaviour
     {
         if (fadeImage == null) fadeImage = GetComponent<Image>();
 
+        fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 0);
+
         float timer = 0;
         while (timer <= FadeLength)
         {
@@ -39,6 +41,8 @@ public class CanvasFadeOut : MonoBehaviour
     public IEnumerator FadeOut(float length)
     {
         if (fadeImage == null) fadeImage = GetComponent<Image>();
+
+        fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 0);
 
         float timer = 0;
         while (timer <= length)
@@ -55,6 +59,8 @@ public class CanvasFadeOut : MonoBehaviour
     {
         if (fadeImage == null) fadeImage = GetComponent<Image>();
 
+        fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1);
+
         float timer = 0;
         while (timer <= FadeLength)
         {
@@ -69,6 +75,8 @@ public class CanvasFadeOut : MonoBehaviour
     public IEnumerator FadeIn(float length)
     {
         if (fadeImage == null) fadeImage = GetComponent<Image>();
+
+        fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1);
 
         float timer = 0;
         while (timer <= length)

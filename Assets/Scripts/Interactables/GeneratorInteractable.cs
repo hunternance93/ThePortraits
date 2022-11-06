@@ -7,6 +7,7 @@ public class GeneratorInteractable : MonoBehaviour, IInteractable
     private bool hasBeenRun = false;
     [SerializeField] private AudioSource soundEffect = null;
     [SerializeField] private GameObject[] lightsToEnable = null;
+    [SerializeField] private BedInteractable bed = null;
 
     public void Interacted()
     {
@@ -20,6 +21,7 @@ public class GeneratorInteractable : MonoBehaviour, IInteractable
                 if (soundEffect != null) soundEffect.Play();
                 GameManager.instance.DisplayMessage("I filled it with fuel.");
                 foreach (GameObject go in lightsToEnable) if (go != null) go.SetActive(true);
+                bed.IsPowerOn = true;
             }
             else
             {

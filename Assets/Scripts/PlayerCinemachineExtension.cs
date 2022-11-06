@@ -39,6 +39,7 @@ public class PlayerCinemachineExtension : CinemachineExtension
 
     protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
     {
+        if (VirtualCamera.name == "ToiletCamera") return;
         if (stage == CinemachineCore.Stage.Finalize)
         {
             if (CinemachineCore.Instance.IsLive(vcam))

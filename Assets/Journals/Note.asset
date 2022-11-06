@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: Note
   m_EditorClassIdentifier: 
   internalId: 9fd10485-7e74-4980-a68e-09445abdc668
-  entryName: Welcome Guest
-  entryText: 'Hello!
-
-
-    Blah blah blah!
-
-
-    Thanks bitch!'
+  entryName: Dear Guest
+  entryText: "Welcome to our humble abode! Thank you so much for choosing to stay
+    with us. You have full access to the kitchen, laundry, and anything in the fridge
+    or pantry. Our casa es su casa!! \n\nIf anything is wrong, please feel free to
+    call us at 681-555-4321! If anything is wrong please contact us before you leave
+    a review!!! \n\nA few house rules:\n1. No shoes inside! Please leave them at
+    the door.\n2. Do NOT enter the door in the basement!\n3. Please take any food
+    with you, we don't want anything going bad in the fridge!\n\nThanks,\nThe Davidsons\n\nP.S.
+    On the off-chance that the power is out when you get there (sadly our power company
+    sucks!) there is a backup generator in the basement. If it is out of fuel, there
+    should be extra in the pantry."
   area: 0
   areaOrder: 0
   font: {fileID: 0}

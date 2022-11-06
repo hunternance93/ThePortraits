@@ -8,6 +8,7 @@ using Assets.Scripts.Common;
 public class OpenDoorScript : MonoBehaviour
 {
     public float TargetAngle = 90;
+    public float OtherTargetAngle = 0;
     public float TimeToOpen = 1;
     public float RotationThreshold = .01f;
 
@@ -20,6 +21,10 @@ public class OpenDoorScript : MonoBehaviour
     public GameObject[] objectsToDelete = null;
     [Tooltip("(Optional) Objects to enable if this door is opened on load (interactable components)")]
     public GameObject[] objectsToEnable = null;
+
+    private Coroutine isInMotion = null;
+
+    public bool IsOpen = false;
 
     private void Awake()
     {
@@ -51,10 +56,16 @@ public class OpenDoorScript : MonoBehaviour
 
     public void OpenDoor()
     {
-        StartCoroutine(OpenDoorRoutine());
-        if (!string.IsNullOrEmpty(SaveDoorOpenState)) {
-            SecureSaveFile.Instance.SetInt(SaveDoorOpenState, 1);
-            SecureSaveFile.Instance.SaveToDisk();
+        if (isInMotion != null) return;
+        if (!IsOpen)
+        {
+            IsOpen = true;
+            isInMotion = StartCoroutine(OpenDoorRoutine());
+        }
+        else
+        {
+            IsOpen = false;
+            isInMotion = StartCoroutine(CloseDoorRoutine());
         }
     }
 
@@ -77,7 +88,7 @@ public class OpenDoorScript : MonoBehaviour
         float timer = 0;
         while (timer < TimeToOpen) {
             timer += Time.deltaTime;
-            transform.localEulerAngles = new Vector3(transform.rotation.x, Mathf.Lerp(0, TargetAngle, timer/TimeToOpen), transform.rotation.z);
+            transform.localEulerAngles = new Vector3(transform.rotation.x, Mathf.Lerp(OtherTargetAngle, TargetAngle, timer/TimeToOpen), transform.rotation.z);
             yield return null;
         }
         transform.localEulerAngles = new Vector3(transform.rotation.x, TargetAngle, transform.rotation.z);
@@ -85,5 +96,27 @@ public class OpenDoorScript : MonoBehaviour
         {
             toggleCollider.enabled = true;
         }
+        isInMotion = null;
+    }
+
+    public IEnumerator CloseDoorRoutine()
+    {
+        if (toggleCollider != null)
+        {
+            toggleCollider.enabled = false;
+        }
+        float timer = 0;
+        while (timer < TimeToOpen)
+        {
+            timer += Time.deltaTime;
+            transform.localEulerAngles = new Vector3(transform.rotation.x, Mathf.Lerp(TargetAngle, OtherTargetAngle, timer / TimeToOpen), transform.rotation.z);
+            yield return null;
+        }
+        transform.localEulerAngles = new Vector3(transform.rotation.x, OtherTargetAngle, transform.rotation.z);
+        if (toggleCollider != null)
+        {
+            toggleCollider.enabled = true;
+        }
+        isInMotion = null;
     }
 }

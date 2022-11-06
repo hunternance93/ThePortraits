@@ -31,7 +31,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] StunnedOverlay = null;
     public Camera mainCamera = null;
     public Camera[] additionalCamerasToSetViewDistance = null;
-    
+    public CanvasFadeOut canvasFadeOut = null;
+
+    [HideInInspector]public bool IsShitting = false;
+
     [Tooltip("Reticle shown normally")]
     public GameObject defaultReticle = null;
     [Tooltip("Reticle shown when player is hovering an interactable")]
@@ -284,6 +287,18 @@ public class GameManager : MonoBehaviour
     {
         DisplayedMessage.SetActive(true); 
         DisplayedMessage.GetComponent<DisplayedMessage>().DisplayNewMessage(message, defaultMessageLength);
+    }
+
+    public void FadeOut()
+    {
+        canvasFadeOut.StopAllCoroutines();
+        StartCoroutine(canvasFadeOut.FadeOut());
+    }
+
+    public void FadeIn()
+    {
+        canvasFadeOut.StopAllCoroutines();
+        StartCoroutine(canvasFadeOut.FadeIn());
     }
 
     public void DisplayMessage(string message, float messageLength)

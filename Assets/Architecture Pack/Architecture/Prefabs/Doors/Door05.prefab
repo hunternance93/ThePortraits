@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 7934521708483770845}
   - component: {fileID: 4221613666027414281}
   - component: {fileID: 2598806289348399054}
-  m_Layer: 0
+  - component: {fileID: 7623407011778904333}
+  - component: {fileID: 2113164820126112858}
+  m_Layer: 6
   m_Name: Door05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,6 +100,40 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6469243292021545506, guid: 5b7de892548834e3f8c53671f6cf5080, type: 3}
+--- !u!114 &7623407011778904333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615254412740317034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f76508b38a9d3e4989b5af51aa224e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetAngle: 80
+  OtherTargetAngle: 180
+  TimeToOpen: 1
+  RotationThreshold: 0.01
+  toggleCollider: {fileID: 0}
+  SaveDoorOpenState: 
+  objectsToDelete: []
+  objectsToEnable: []
+  IsOpen: 0
+--- !u!114 &2113164820126112858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615254412740317034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c05ca7e1e0bc6408c0465642f08081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ods: {fileID: 7623407011778904333}
 --- !u!1001 &5210571666057722691
 PrefabInstance:
   m_ObjectHideFlags: 0
