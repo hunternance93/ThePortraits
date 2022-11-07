@@ -537,7 +537,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2083670947}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &91093798
 PrefabInstance:
@@ -1738,11 +1738,6 @@ MonoBehaviour:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4714042008241089841, guid: 2db2cddeac4e92a4981c120401975ddc, type: 3}
   m_PrefabInstance: {fileID: 8703701172406296203}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &386411027 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3385823128587054227, guid: 441c8a480508b944b9eed96fa3fbabae, type: 3}
-  m_PrefabInstance: {fileID: 4064082317168167893}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &412987012
 PrefabInstance:
@@ -2947,7 +2942,7 @@ MonoBehaviour:
   bed: {fileID: 594441279}
   bathroomDoor: {fileID: 2011947737}
   toiletCam: {fileID: 1445372313}
-  portrait: {fileID: 386411027}
+  portrait: {fileID: 1867631180}
   inspectWindow: {fileID: 30728005}
   HasWindowBeenInspected: 0
 --- !u!1 &629671643
@@ -3220,6 +3215,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7254843984848548148, guid: f890e362eb56b4eedbd03b9c929d7dfc, type: 3}
   m_PrefabInstance: {fileID: 671323331}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &676387194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 676387195}
+  m_Layer: 6
+  m_Name: ToiletCamInitLookTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &676387195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676387194}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 1.944, y: 1.482, z: -1.126}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2083670947}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &691541363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6249,7 +6274,7 @@ PrefabInstance:
     - target: {fileID: 1653886431038103268, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_LookAt
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 676387195}
     - target: {fileID: 1653886431038103268, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_Priority
       value: 0
@@ -6261,6 +6286,10 @@ PrefabInstance:
     - target: {fileID: 1653886431038103268, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_Transitions.m_InheritPosition
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653886431038103269, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1653886431038103269, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: threshold
@@ -6324,7 +6353,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445372304}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33760a31afeec4cbea9b65c1c9178464, type: 3}
   m_Name: 
@@ -8823,6 +8852,36 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6138c2c0f01b3db4986e998193ff54c0, type: 3}
+--- !u!1 &1867631179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1867631180}
+  m_Layer: 6
+  m_Name: ToiletCamLookTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1867631180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867631179}
+  m_LocalRotation: {x: 0, y: 0.8191521, z: -0, w: -0.5735764}
+  m_LocalPosition: {x: 1.944, y: 1.482, z: -1.126}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2083670947}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 250, z: 0}
 --- !u!1001 &1870455252
 PrefabInstance:
   m_ObjectHideFlags: 0

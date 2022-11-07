@@ -23,7 +23,7 @@ public class PlayerCinemachineExtension : CinemachineExtension
         }
     }
 
-    private CinemachinePOV POV
+    /*private CinemachinePOV POV
     {
         get
         {
@@ -34,7 +34,7 @@ public class PlayerCinemachineExtension : CinemachineExtension
             
             return _pov;
         }
-    }
+    }*/
     
 
     protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)

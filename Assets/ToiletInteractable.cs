@@ -52,26 +52,18 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         //Set camera
         toiletCam.Priority = 999;
         CinemachinePOV POV = toiletCam.GetCinemachineComponent<CinemachinePOV>();
-        Debug.Log("Values before: " + POV.m_HorizontalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_HorizontalAxis.m_Recentering.m_WaitTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_WaitTime);
-        POV.m_HorizontalAxis.m_Recentering.m_RecenteringTime = 0;
-        POV.m_HorizontalAxis.m_Recentering.m_WaitTime = 0;
-        POV.m_VerticalAxis.m_Recentering.m_RecenteringTime = 0;
-        POV.m_VerticalAxis.m_Recentering.m_WaitTime = 0;
-        Debug.Log("Values after: " + POV.m_HorizontalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_HorizontalAxis.m_Recentering.m_WaitTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_WaitTime);
-        toiletCam.gameObject.SetActive(false);
-        toiletCam.gameObject.SetActive(true);
-        yield return null;
-        Debug.Log("Values after waiting a frame: " + POV.m_HorizontalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_HorizontalAxis.m_Recentering.m_WaitTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_WaitTime);
+        POV.m_HorizontalRecentering.m_RecenteringTime = .01f;
+        POV.m_HorizontalRecentering.m_WaitTime = .01f;
+        POV.m_VerticalRecentering.m_RecenteringTime = .01f;
+        POV.m_VerticalRecentering.m_WaitTime = .01f;
+        yield return new WaitForSeconds(.1f);
         POV.m_HorizontalRecentering.m_enabled = false;
         POV.m_VerticalRecentering.m_enabled = false;
-        POV.m_HorizontalAxis.m_Recentering.m_RecenteringTime = 10;
-        POV.m_HorizontalAxis.m_Recentering.m_WaitTime = 3;
-        POV.m_VerticalAxis.m_Recentering.m_RecenteringTime = 10;
-        POV.m_VerticalAxis.m_Recentering.m_WaitTime = 3;
+        POV.m_HorizontalRecentering.m_RecenteringTime = 10;
+        POV.m_HorizontalRecentering.m_WaitTime = 3;
+        POV.m_VerticalRecentering.m_RecenteringTime = 10;
+        POV.m_VerticalRecentering.m_WaitTime = 3;
         toiletCam.LookAt = portrait.transform;
-        toiletCam.gameObject.SetActive(false);
-        toiletCam.gameObject.SetActive(true);
-        Debug.Log("Values after set back: " + POV.m_HorizontalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_HorizontalAxis.m_Recentering.m_WaitTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_WaitTime);
         yield return new WaitForSeconds(1);
         //TODO: Make sounds play when not looking at it
         GameManager.instance.FadeIn();
@@ -83,16 +75,11 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         float timer = 0;
         while (timer < 30)
         {
-            POV.m_HorizontalAxis.m_Recentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 30);
-            POV.m_VerticalAxis.m_Recentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 30);
-            POV.m_HorizontalAxis.m_Recentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 30);
-            POV.m_VerticalAxis.m_Recentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 30);
+            POV.m_HorizontalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 30);
+            POV.m_VerticalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 30);
+            POV.m_HorizontalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 30);
+            POV.m_VerticalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 30);
             timer += Time.deltaTime;
-            Debug.Log("Values each loop: " + POV.m_HorizontalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_HorizontalAxis.m_Recentering.m_WaitTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_WaitTime);
-            CinemachinePOV tempPOV = toiletCam.GetCinemachineComponent<CinemachinePOV>();
-            Debug.Log("Values each loop TEMP: " + tempPOV.m_HorizontalAxis.m_Recentering.m_RecenteringTime + "\n" + tempPOV.m_HorizontalAxis.m_Recentering.m_WaitTime + "\n" + tempPOV.m_VerticalAxis.m_Recentering.m_RecenteringTime + "\n" + tempPOV.m_VerticalAxis.m_Recentering.m_WaitTime);
-            toiletCam.gameObject.SetActive(false);
-            toiletCam.gameObject.SetActive(true);
             yield return null;
         }
 
