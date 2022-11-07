@@ -34,7 +34,8 @@ public class BedInteractable : MonoBehaviour, IInteractable
         GameManager.instance.SwitchInput(GameManager.instance.controls.None.Get());
         GameManager.instance.DisplayMessage("What an absolute shithole--not even a pillow. And I can't stand these weird portraits but my eyes keep getting drawn to them... I'll just rest my head facedown and hope that I can eventually sleep.", 10);
         yield return new WaitForSeconds(16);
-        //Sound effects...
+        //TODO: Sound effects...
+        //TODO: Make 'portrait' go away
         GameManager.instance.FadeIn();
         GameManager.instance.SwitchInput(GameManager.instance.controls.PlayerControl.Get());
         GameManager.instance.DisplayMessage("My stomach is suddenly killing me...");

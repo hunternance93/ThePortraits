@@ -73,6 +73,7 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         toiletCam.gameObject.SetActive(true);
         Debug.Log("Values after set back: " + POV.m_HorizontalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_HorizontalAxis.m_Recentering.m_WaitTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_RecenteringTime + "\n" + POV.m_VerticalAxis.m_Recentering.m_WaitTime);
         yield return new WaitForSeconds(1);
+        //TODO: Make sounds play when not looking at it
         GameManager.instance.FadeIn();
         inspectWindow.SetActive(true);
         while (!HasWindowBeenInspected) yield return null;
@@ -94,5 +95,7 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
             toiletCam.gameObject.SetActive(true);
             yield return null;
         }
+
+        //TODO: Make big sound play, player goes what was dat, player gets control back, open front door, put portrait back
     }
 }
