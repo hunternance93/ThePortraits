@@ -10,6 +10,7 @@ public class InformationInteractable : MonoBehaviour, IInteractable
     [SerializeField] private AudioSource aud = null;
     [Tooltip("(Optional) What should Kaede say?")]
     [SerializeField] private string kaedeDialogue = "";
+    [SerializeField] private ToiletInteractable toilet = null;
 
     private bool hasKaedeSpoken = false;
 
@@ -36,6 +37,11 @@ public class InformationInteractable : MonoBehaviour, IInteractable
                     KaedeVoiceManager.instance.MakeKaedeSay(KaedeVoiceManager.instance.PleaseDontLetItBeHer);
                     break;
             }
+        }
+        if (toilet != null)
+        {
+            toilet.HasWindowBeenInspected = true;
+            Destroy(gameObject);
         }
     }
 }

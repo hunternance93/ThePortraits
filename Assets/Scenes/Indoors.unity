@@ -251,6 +251,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4336624212557030011, guid: d99ef9edcaecf48c29809eeaebc688a4, type: 3}
   m_PrefabInstance: {fileID: 11166484}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &30728005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30728006}
+  - component: {fileID: 30728007}
+  - component: {fileID: 30728008}
+  m_Layer: 6
+  m_Name: InspectWindowWhileShitting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &30728006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30728005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.965, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 115408365}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &30728007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30728005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5f3cb3556265a42bb5d24762a5421e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: Impossible to do this with this damned portrait. Who puts these up in
+    every room?
+  messageLength: 7
+  aud: {fileID: 0}
+  kaedeDialogue: 
+  toilet: {fileID: 628903184}
+--- !u!65 &30728008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30728005}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.5995321, z: 3.757276}
+  m_Center: {x: 0, y: 0.7997663, z: -0.28799725}
 --- !u!1 &32872120
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79802100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.208, z: 0}
+  m_LocalPosition: {x: 0, y: 1.208, z: -0.069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2083670947}
@@ -1670,6 +1733,7 @@ MonoBehaviour:
   messageLength: -1
   aud: {fileID: 0}
   kaedeDialogue: 
+  toilet: {fileID: 0}
 --- !u!1 &382314378 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4714042008241089841, guid: 2db2cddeac4e92a4981c120401975ddc, type: 3}
@@ -2884,6 +2948,7 @@ MonoBehaviour:
   bathroomDoor: {fileID: 2011947737}
   toiletCam: {fileID: 1445372313}
   portrait: {fileID: 386411027}
+  inspectWindow: {fileID: 30728005}
   HasWindowBeenInspected: 0
 --- !u!1 &629671643
 GameObject:
@@ -3744,7 +3809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1270960000986343320, guid: 37e34a5fd29cb4bd9b34bb1109a08573, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.76
       objectReference: {fileID: 0}
     - target: {fileID: 1270960000986343320, guid: 37e34a5fd29cb4bd9b34bb1109a08573, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3752,7 +3817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1270960000986343320, guid: 37e34a5fd29cb4bd9b34bb1109a08573, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 1270960000986343327, guid: 37e34a5fd29cb4bd9b34bb1109a08573, type: 3}
       propertyPath: m_Follow
@@ -3760,15 +3825,15 @@ PrefabInstance:
       objectReference: {fileID: 1589531837}
     - target: {fileID: 2934867228282147075, guid: 37e34a5fd29cb4bd9b34bb1109a08573, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.649
+      value: 5.76
       objectReference: {fileID: 0}
     - target: {fileID: 2934867228282147075, guid: 37e34a5fd29cb4bd9b34bb1109a08573, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.208
+      value: 1.442
       objectReference: {fileID: 0}
     - target: {fileID: 2934867228282147075, guid: 37e34a5fd29cb4bd9b34bb1109a08573, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.024
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 5099680642486776151, guid: 37e34a5fd29cb4bd9b34bb1109a08573, type: 3}
       propertyPath: m_Type
@@ -3867,7 +3932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6147488583303333131, guid: 9e2be9b69d1f2924492e4e4de534a50a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.76
       objectReference: {fileID: 0}
     - target: {fileID: 6147488583303333131, guid: 9e2be9b69d1f2924492e4e4de534a50a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3875,7 +3940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6147488583303333131, guid: 9e2be9b69d1f2924492e4e4de534a50a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 6147488583303333131, guid: 9e2be9b69d1f2924492e4e4de534a50a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4981,6 +5046,7 @@ MonoBehaviour:
   messageLength: -1
   aud: {fileID: 0}
   kaedeDialogue: 
+  toilet: {fileID: 0}
 --- !u!1001 &1098396382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6094,7 +6160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1653886430799351642, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_VerticalAxis.m_MaxValue
-      value: 90
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1653886430799351642, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_VerticalAxis.m_MinValue
@@ -6102,11 +6168,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1653886430799351642, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_HorizontalAxis.m_MaxValue
-      value: 120
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 1653886430799351642, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_HorizontalAxis.m_MinValue
-      value: -120
+      value: -110
       objectReference: {fileID: 0}
     - target: {fileID: 1653886430799351642, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_VerticalRecentering.m_enabled
@@ -6146,7 +6212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1653886431038103267, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.024
+      value: -0.95500004
       objectReference: {fileID: 0}
     - target: {fileID: 1653886431038103267, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6183,7 +6249,7 @@ PrefabInstance:
     - target: {fileID: 1653886431038103268, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_LookAt
       value: 
-      objectReference: {fileID: 386411027}
+      objectReference: {fileID: 0}
     - target: {fileID: 1653886431038103268, guid: 3b735356bda344bdaa6c982aa6a580cf, type: 3}
       propertyPath: m_Priority
       value: 20
@@ -7382,6 +7448,7 @@ MonoBehaviour:
   messageLength: -1
   aud: {fileID: 0}
   kaedeDialogue: 
+  toilet: {fileID: 0}
 --- !u!1001 &1678376738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7780,6 +7847,7 @@ MonoBehaviour:
   messageLength: -1
   aud: {fileID: 0}
   kaedeDialogue: 
+  toilet: {fileID: 0}
 --- !u!1001 &1737183983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8740,6 +8808,7 @@ MonoBehaviour:
   messageLength: -1
   aud: {fileID: 0}
   kaedeDialogue: 
+  toilet: {fileID: 0}
 --- !u!64 &1867403636
 MeshCollider:
   m_ObjectHideFlags: 0
