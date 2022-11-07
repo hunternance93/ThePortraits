@@ -10,6 +10,7 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
     [SerializeField] CinemachineVirtualCamera toiletCam = null;
     [SerializeField] private Transform portrait = null;
     [SerializeField] private GameObject inspectWindow = null;
+    [SerializeField] private bool testMode = false;
 
     [HideInInspector] public bool HasWindowBeenInspected = false;
     private Coroutine ShitRoutine = null;
@@ -25,7 +26,7 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         {
             return;
         }    
-        StartCoroutine(TransitionToToiletCam()); //todo delte
+        if (testMode) StartCoroutine(TransitionToToiletCam());
         if (bed.UpsetStomach)
         {
             if (bathroomDoor.IsOpen)
