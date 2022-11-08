@@ -96,6 +96,9 @@ public class GameManager : MonoBehaviour
             startingIntensityOfLightsInScene[i] = lightsInScene[i].intensity;
         }
 
+        //TODO: Figure out where to put this, remove (or change?) resolution options
+        Screen.SetResolution(388, 288, FullScreenMode.ExclusiveFullScreen);
+
         if (GetBrightnessSetting() != 1) ApplyBrightness(GetBrightnessSetting());
         ApplyMouseInputProcessors();
         ApplyGamepadInputProcessors();

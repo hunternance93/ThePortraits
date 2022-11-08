@@ -2209,12 +2209,12 @@ MonoBehaviour:
   stunAbilityNoise: {fileID: 6409862908050449062}
   hoverOverUI: {fileID: 3366450298185549375}
   selectUI: {fileID: 8270006047119432053}
-  dirtWalking: {fileID: 8300000, guid: 92a50e9d36d6eb742b15baf873af07bb, type: 3}
-  dirtCrouching: {fileID: 8300000, guid: 6deca15349ebe5f4cb9a7f9df2de41ef, type: 3}
-  dirtRunning: {fileID: 8300000, guid: 43a9eb5e6318c9b489d18fb7a829f1db, type: 3}
-  tileWalking: {fileID: 8300000, guid: c263ac0d923aa5044b5e98d1f1369005, type: 3}
-  tileCrouching: {fileID: 8300000, guid: a18d963482999b94dbb992108905cd6c, type: 3}
-  tileRunning: {fileID: 8300000, guid: 19d47cdb5b261dd49b1ad1e924f327ff, type: 3}
+  dirtWalking: {fileID: 8300000, guid: 7a298ed2517b36a479aff29a4ab02893, type: 3}
+  dirtCrouching: {fileID: 8300000, guid: a13b7e45e823df04cbc274b10fb885d8, type: 3}
+  dirtRunning: {fileID: 8300000, guid: aea1def1a4c0a4445a674a9f826d3086, type: 3}
+  tileWalking: {fileID: 8300000, guid: a764611e8036dc04b9a947f3c5ab58e4, type: 3}
+  tileCrouching: {fileID: 8300000, guid: 108e19c7e33b0b54b94d043ddf71b769, type: 3}
+  tileRunning: {fileID: 8300000, guid: 0c3f717eeb09333469bc6d617b6bed0d, type: 3}
   woodWalking: {fileID: 8300000, guid: 78466758e9c08fb4b9d510234b5f981e, type: 3}
   woodCrouching: {fileID: 8300000, guid: d89ab19f0a9d46b458a299d08e1e1131, type: 3}
   woodRunning: {fileID: 8300000, guid: 4b2b7609c841bfc4cac2d6fb03d3a1d2, type: 3}
