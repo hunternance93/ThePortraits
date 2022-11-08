@@ -11,8 +11,16 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
     [SerializeField] private Transform portrait = null;
     [SerializeField] private GameObject inspectWindow = null;
     [SerializeField] private bool testMode = false;
+    [SerializeField] private AudioSource risingTensionAudio = null;
+    [SerializeField] private AudioSource running = null;
+    [SerializeField] private AudioSource doorOpen = null;
+    [SerializeField] private AudioSource huh = null;
+    [SerializeField] private InformationInteractable basementDoor = null;
+    [SerializeField] private GameObject onFrontDoor = null;
+    [SerializeField] private GameObject offFrontDoor = null;
 
     [HideInInspector] public bool HasWindowBeenInspected = false;
+    [HideInInspector] public bool HasTakenShit = false;
     private Coroutine ShitRoutine = null;
 
     private float startRecenter = 10;
@@ -25,30 +33,37 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         if (ShitRoutine != null)
         {
             return;
-        }    
-        if (testMode) StartCoroutine(TransitionToToiletCam());
-        if (bed.UpsetStomach)
+        }
+        if (HasTakenShit)
         {
-            if (bathroomDoor.IsOpen)
-            {
-                GameManager.instance.DisplayMessage("I can't shit with the door open. I get performance anxiety.");
-            }
-            else
-            {
-                //Start shitting sequence
-                StartCoroutine(TransitionToToiletCam());
-            }
+            GameManager.instance.DisplayMessage("Who is here with me?");
         }
         else
         {
-            GameManager.instance.DisplayMessage("I don't need to use the bathroom right now.");
+            if (testMode) StartCoroutine(TransitionToToiletCam());
+            if (bed.UpsetStomach)
+            {
+                if (bathroomDoor.IsOpen)
+                {
+                    GameManager.instance.DisplayMessage("I can't shit with the door open. I get performance anxiety.");
+                }
+                else
+                {
+                    //Start shitting sequence
+                    StartCoroutine(TransitionToToiletCam());
+                }
+            }
+            else
+            {
+                GameManager.instance.DisplayMessage("I don't need to use the bathroom right now.");
+            }
         }
     }
 
     private IEnumerator TransitionToToiletCam()
     {
         GameManager.instance.FadeOut();
-        //GameManager.instance.SwitchInput(GameManager.instance.controls.None.Get());
+        //TODO: Prevent movement while this is happening
         yield return new WaitForSeconds(1);
         //Set camera
         toiletCam.Priority = 999;
@@ -70,6 +85,7 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         GameManager.instance.FadeIn();
         inspectWindow.SetActive(true);
         while (!HasWindowBeenInspected) yield return null;
+        risingTensionAudio.Play();
         yield return new WaitForSeconds(5);
         POV.m_HorizontalRecentering.m_enabled = true;
         POV.m_VerticalRecentering.m_enabled = true;
@@ -84,6 +100,24 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
             yield return null;
         }
 
-        //TODO: Make big sound play, player goes what was dat, player gets control back, open front door, put portrait back
+        doorOpen.Play();
+        POV.m_HorizontalRecentering.m_enabled = false;
+        POV.m_VerticalRecentering.m_enabled = false;
+        yield return new WaitForSeconds(3);
+        running.Play();
+        yield return new WaitForSeconds(.5f);
+        huh.Play();
+        yield return new WaitForSeconds(6.5f);
+        doorOpen.Play();
+        GameManager.instance.FadeOut();
+        yield return new WaitForSeconds(1);
+        toiletCam.Priority = 0;
+        yield return new WaitForSeconds(1);
+        GameManager.instance.FadeIn();
+        HasTakenShit = true;
+        basementDoor.ChangeMessage("Was someone in here?");
+        //TODO: Put portrait back, open front door, set objects to right state
+        onFrontDoor.SetActive(true);
+        offFrontDoor.SetActive(false);
     }
 }

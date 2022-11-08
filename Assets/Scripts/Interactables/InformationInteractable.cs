@@ -44,4 +44,9 @@ public class InformationInteractable : MonoBehaviour, IInteractable
             Destroy(gameObject);
         }
     }
+
+    public void ChangeMessage(string messageReplacement)
+    {
+        message = messageReplacement;
+    }
 }
