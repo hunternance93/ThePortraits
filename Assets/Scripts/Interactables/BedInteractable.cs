@@ -7,6 +7,7 @@ public class BedInteractable : MonoBehaviour, IInteractable
     [HideInInspector] public bool IsPowerOn = false;
     [HideInInspector] public bool UpsetStomach = false;
 
+    [SerializeField] private AudioSource audToPlayWhileSleeping = null;
     [SerializeField] private ToiletInteractable toilet = null;
     [SerializeField] private GameObject openedDoor = null;
     [SerializeField] private OpenDoorScript bedroomDoor = null;
@@ -56,9 +57,20 @@ public class BedInteractable : MonoBehaviour, IInteractable
         GameManager.instance.FadeOut();
         GameManager.instance.SwitchInput(GameManager.instance.controls.None.Get());
         GameManager.instance.DisplayMessage("How the hell am I supposed to sleep with these staring at me? I'm trying to ignore them but it is getting in my head. I'll just rest my head facedown and hope that I can eventually sleep.", 10);
-        yield return new WaitForSeconds(16);
+        yield return new WaitForSeconds(12);
+        audToPlayWhileSleeping.Play();
+        yield return new WaitForSeconds(8);
+        float timer = 0;
+        while (timer < 3)
+        {
+            audToPlayWhileSleeping.volume = Mathf.Lerp(1, 0, timer / 1);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        audToPlayWhileSleeping.Stop();
         //TODO: Sound effects... Scratching?
         //TODO: Make 'portrait' go away
+        yield return new WaitForSeconds(3);
         GameManager.instance.FadeIn();
         GameManager.instance.SwitchInput(GameManager.instance.controls.PlayerControl.Get());
         GameManager.instance.DisplayMessage("My stomach is suddenly killing me...");
