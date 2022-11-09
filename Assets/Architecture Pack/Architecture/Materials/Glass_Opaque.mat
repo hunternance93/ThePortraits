@@ -53,11 +53,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: bfc70a5af116a49a8a0d6aa5111ada28, type: 3}
+        m_Texture: {fileID: 2800000, guid: 075257c3ba8e38c4480347e97eb5cd59, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bfc70a5af116a49a8a0d6aa5111ada28, type: 3}
+        m_Texture: {fileID: 2800000, guid: 075257c3ba8e38c4480347e97eb5cd59, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
