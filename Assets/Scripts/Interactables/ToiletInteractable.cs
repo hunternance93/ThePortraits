@@ -101,6 +101,7 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         }
 
         doorOpen.Play();
+        PortraitManager.instance.TerrorGazeEnabled = false;
         POV.m_HorizontalRecentering.m_enabled = false;
         POV.m_VerticalRecentering.m_enabled = false;
         yield return new WaitForSeconds(3);

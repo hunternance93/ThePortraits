@@ -74,6 +74,7 @@ public class BedInteractable : MonoBehaviour, IInteractable
         GameManager.instance.FadeIn();
         GameManager.instance.SwitchInput(GameManager.instance.controls.PlayerControl.Get());
         GameManager.instance.DisplayMessage("My stomach is suddenly killing me...");
+        PortraitManager.instance.SetPhase(1);
     }
 
     private IEnumerator SleepRoutine2()
@@ -82,5 +83,6 @@ public class BedInteractable : MonoBehaviour, IInteractable
         GameManager.instance.SwitchInput(GameManager.instance.controls.None.Get());
         GameManager.instance.DisplayMessage("They're still looking at me, but it isn't safe to go outside. I will have to wait till morning...", 10);
         yield return new WaitForSeconds(16);
+        PortraitManager.instance.SetPhase(2);
     }
 }
