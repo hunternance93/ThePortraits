@@ -205,7 +205,8 @@ public class PauseMenuController : MonoBehaviour
         timeStampPaused = Time.unscaledTime;
 
         UnityEngine.Cursor.lockState = CursorLockMode.None;
-        
+        UnityEngine.Cursor.visible = true;
+
         if (PreviousScreenSelected != null)
         {
             MenuAudio menuAudio = PreviousScreenSelected.GetComponent<MenuAudio>();

@@ -51,7 +51,9 @@ public class Player : MonoBehaviour
         originalScale = transform.localScale;
 
         if (JournalEntries == null) JournalEntries = new List<JournalEntry>();
+
     }
+
 
     private void Update()
     {

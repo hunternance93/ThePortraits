@@ -441,7 +441,6 @@ public class EndingManager : MonoBehaviour
         if (Credits != null) Credits.SetActive(true);
         if (SceneToPlay == SceneList.Intro)
         {
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             SceneManager.LoadScene("Indoors");
         }
         if (SceneToPlay == SceneList.CreepyPasta) SceneManager.LoadScene("TitleScreen");
