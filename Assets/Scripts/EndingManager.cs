@@ -439,7 +439,11 @@ public class EndingManager : MonoBehaviour
         StopAllCoroutines();
         scenePlaying = null;
         if (Credits != null) Credits.SetActive(true);
-        if (SceneToPlay == SceneList.Intro) SceneManager.LoadScene("Indoors");
+        if (SceneToPlay == SceneList.Intro)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            SceneManager.LoadScene("Indoors");
+        }
         if (SceneToPlay == SceneList.CreepyPasta) SceneManager.LoadScene("TitleScreen");
             gameObject.SetActive(false);
     }
