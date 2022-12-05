@@ -9,8 +9,6 @@ public class PortraitManager : MonoBehaviour
     private int phase = 0;
     private int portraitInteracts = 0;
 
-    [HideInInspector] public bool TerrorGazeEnabled = false;
-
 
     private void Awake()
     {
@@ -20,20 +18,29 @@ public class PortraitManager : MonoBehaviour
     public void SetPhase(int newPhase)
     {
         phase = newPhase;
-        if (newPhase == 1) TerrorGazeEnabled = true;
-        else if (newPhase == 2)
+        if (newPhase == 3)
         {
             portraitInteracts = 0;
-            TerrorGazeEnabled = false;
         }
+    }
+
+    public int GetPhase()
+    {
+        return phase;
+    }
+
+    public void InstantlyStopAllEffects()
+    {
+        Staring.InstantlyStopAllEffects();
+    }
+
+    public void StaringAtPortrait(bool isStaring)
+    {
+        if (phase == 1) Staring.SetStaring(isStaring);
     }
 
     public void HandlePortraitInteract()
     {
-        Staring.SetStaring(!Staring.LookingAtPortrait);
-
-        return;
-
         switch (phase)
         {
             case 0:
@@ -65,6 +72,8 @@ public class PortraitManager : MonoBehaviour
                 //GameManager.instance.DisplayMessage("I can't keep looking at this!");
                 break;
             case 2:
+                break;
+            case 3:
                 if (portraitInteracts == 0)
                 {
                     //TODO: Sound effect

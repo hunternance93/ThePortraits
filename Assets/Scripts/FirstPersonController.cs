@@ -247,14 +247,15 @@ public class FirstPersonController : MonoBehaviour
     {
         #region Crouch
 
-        if (GameManager.instance.Player.isSightJacking) { 
+        if (GameManager.instance.Player.isSightJacking)
+        {
             if (isCrouched)
             {
                 ignoreSprinting = false;
                 crouchingInProgress = true;
                 crouchTimer = crouchTime;
             }
-//            isCrouched = false;
+            //            isCrouched = false;
         }
 
         if (crouchingInProgress)
@@ -262,7 +263,7 @@ public class FirstPersonController : MonoBehaviour
             if (isCrouched)
             {
                 crouchTimer += Time.deltaTime;
-                transform.localScale = Vector3.Lerp(startingScale, new Vector3(originalScale.x, crouchHeight, originalScale.z), crouchTimer/crouchTime);
+                transform.localScale = Vector3.Lerp(startingScale, new Vector3(originalScale.x, crouchHeight, originalScale.z), crouchTimer / crouchTime);
                 currentSpeed = walkSpeed * speedReduction;
                 FrictionlessCollider.enabled = false;
 
@@ -276,7 +277,7 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 crouchTimer += Time.deltaTime;
-                transform.localScale = Vector3.Lerp(startingScale, originalScale, crouchTimer/crouchTime);
+                transform.localScale = Vector3.Lerp(startingScale, originalScale, crouchTimer / crouchTime);
                 currentSpeed = walkSpeed;
 
                 if (Math.Abs(transform.localScale.y - originalScale.y) <= .01)
@@ -314,26 +315,44 @@ public class FirstPersonController : MonoBehaviour
                 if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out interactableHit, distanceToInteractable, LayerMask.GetMask("InteractableObject", "InteractablePassthrough"))) //TODO: Find out why assigning interactableMask in editor isn't working
                 {
                     if (!Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, Vector3.Distance(playerCamera.transform.position, interactableHit.point), LayerMask.GetMask("Obstacles")))
-                    { //TODO: Same as above, make Obstacles not hardcoded if possible
+                    {
                         currentInteraction = interactableHit.transform.gameObject.GetComponent<IInteractable>();
                         if (currentInteraction == null) currentInteraction = interactableHit.transform.gameObject.GetComponentInParent<IInteractable>();
+                        if (currentInteraction is PortraitInteractable && (PortraitManager.instance.GetPhase() == 1 || PortraitManager.instance.GetPhase() == 2)) currentInteraction = null;
                         if (currentInteraction != null)
                         {
                             GameManager.instance.SetInteractableReticle();
                         }
                     }
                 }
+
+                if (PortraitManager.instance.GetPhase() == 1)
+                {
+                    RaycastHit portraitHit;
+                    bool staringAtPortrait = false;
+                    if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out portraitHit, 15, LayerMask.GetMask("InteractableObject"))) //TODO: Find out why assigning interactableMask in editor isn't working
+                    {
+                        if (!Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, Vector3.Distance(playerCamera.transform.position, interactableHit.point), LayerMask.GetMask("Obstacles")))
+                        {
+                            if (portraitHit.transform.gameObject.GetComponent<PortraitInteractable>() != null)
+                            {
+                                staringAtPortrait = true;
+                            }
+                        }
+                    }
+                    PortraitManager.instance.StaringAtPortrait(staringAtPortrait);
+
+                }
+                if (currentInteraction == null)
+                {
+                    GameManager.instance.SetDefaultReticle();
+                }
             }
 
-            if (currentInteraction == null)
-            {
-               GameManager.instance.SetDefaultReticle();
-            }
+            #endregion
+
+            CheckGround();
         }
-
-        #endregion
-
-        CheckGround();
     }
 
     void FixedUpdate()

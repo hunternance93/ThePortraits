@@ -11,7 +11,7 @@ public class FrontDoorInteractable : MonoBehaviour, IInteractable
         //TODO: Add sounds
         otherDoor.SetActive(true);
         GameManager.instance.DisplayMessage("So something was in here... Looks like it left.");
-        PortraitManager.instance.TerrorGazeEnabled = true;
+        PortraitManager.instance.SetPhase(1);
         gameObject.SetActive(false);
     }
     

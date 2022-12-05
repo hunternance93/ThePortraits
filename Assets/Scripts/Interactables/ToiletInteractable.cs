@@ -90,23 +90,25 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         POV.m_HorizontalRecentering.m_enabled = true;
         POV.m_VerticalRecentering.m_enabled = true;
         float timer = 0;
-        while (timer < 30)
+        while (timer < 28)
         {
-            POV.m_HorizontalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 30);
-            POV.m_VerticalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 30);
-            POV.m_HorizontalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 30);
-            POV.m_VerticalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 30);
+            POV.m_HorizontalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 28);
+            POV.m_VerticalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 28);
+            POV.m_HorizontalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 28);
+            POV.m_VerticalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 28);
             timer += Time.deltaTime;
             yield return null;
         }
+        yield return new WaitForSeconds(2);
 
         doorOpen.Play();
-        PortraitManager.instance.TerrorGazeEnabled = false;
-        POV.m_HorizontalRecentering.m_enabled = false;
-        POV.m_VerticalRecentering.m_enabled = false;
         yield return new WaitForSeconds(3);
         running.Play();
         yield return new WaitForSeconds(.5f);
+        PortraitManager.instance.SetPhase(2);
+        PortraitManager.instance.InstantlyStopAllEffects();
+        POV.m_HorizontalRecentering.m_enabled = false;
+        POV.m_VerticalRecentering.m_enabled = false;
         huh.Play();
         yield return new WaitForSeconds(6.5f);
         doorOpen.Play();

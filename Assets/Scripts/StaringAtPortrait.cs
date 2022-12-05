@@ -131,4 +131,16 @@ public class StaringAtPortrait : MonoBehaviour
         }
         endEffectsRoutine = null;
     }
+
+    public void InstantlyStopAllEffects()
+    {
+        StopAllCoroutines();
+        pulseEffectsRoutine = null;
+        beginEffectsRoutine = null;
+        endEffectsRoutine = null;
+        vig.intensity.value = 0;
+        _CA.intensity.value = 0;
+        ScarySounds.volume = 0;
+        LookingAtPortrait = false;
+    }
 }
