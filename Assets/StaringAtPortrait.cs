@@ -4,6 +4,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class StaringAtPortrait : MonoBehaviour
 {
+    public AudioSource ScarySounds = null;
 
     public PostProcessProfile VolProfile;
     private Vignette vig;
@@ -17,6 +18,8 @@ public class StaringAtPortrait : MonoBehaviour
     private const float MIN_CA = .4f;
     private const float TIME_TO_REACH_EFFECTS = .5f;
     private const float LENGTH_OF_PULSE = 1;
+    private const float MIN_VOLUME = .7f;
+    private const float MAX_VOLUME = 1;
 
     private float vignetteLevel = 0;
     private float chromLevel = 0;
@@ -76,6 +79,7 @@ public class StaringAtPortrait : MonoBehaviour
             {
                 vig.intensity.value = Mathf.Lerp(0, MIN_VIG, timer / TIME_TO_REACH_EFFECTS);
                 _CA.intensity.value = Mathf.Lerp(0, MIN_CA, timer / TIME_TO_REACH_EFFECTS);
+                ScarySounds.volume = Mathf.Lerp(0, MIN_VOLUME, timer / TIME_TO_REACH_EFFECTS);
                 timer += Time.deltaTime;
                 Debug.Log("Vig val: " + vig.intensity.value);
                 Debug.Log("CA val: " + _CA.intensity.value);
@@ -95,6 +99,7 @@ public class StaringAtPortrait : MonoBehaviour
             {
                 vig.intensity.value = Mathf.Lerp(MIN_VIG, MAX_VIG, timer / (LENGTH_OF_PULSE / 2));
                 _CA.intensity.value = Mathf.Lerp(MIN_CA, MAX_CA, timer / (LENGTH_OF_PULSE / 2));
+                ScarySounds.volume = Mathf.Lerp(MIN_VOLUME, MAX_VOLUME, timer / (LENGTH_OF_PULSE / 2));
                 timer += Time.deltaTime;
                 yield return null;
             }
@@ -103,6 +108,7 @@ public class StaringAtPortrait : MonoBehaviour
             {
                 vig.intensity.value = Mathf.Lerp(MAX_VIG, MIN_VIG, timer / (LENGTH_OF_PULSE / 2));
                 _CA.intensity.value = Mathf.Lerp(MAX_CA, MIN_CA, timer / (LENGTH_OF_PULSE / 2));
+                ScarySounds.volume = Mathf.Lerp(MAX_VOLUME, MIN_VOLUME, timer / (LENGTH_OF_PULSE / 2));
                 timer += Time.deltaTime;
                 yield return null;
             }
@@ -119,6 +125,7 @@ public class StaringAtPortrait : MonoBehaviour
         {
             vig.intensity.value = Mathf.Lerp(MIN_VIG, 0, timer / TIME_TO_REACH_EFFECTS);
             _CA.intensity.value = Mathf.Lerp(MIN_CA, 0, timer / TIME_TO_REACH_EFFECTS);
+            ScarySounds.volume = Mathf.Lerp(MIN_VOLUME, 0, timer / TIME_TO_REACH_EFFECTS);
             timer += Time.deltaTime;
             yield return null;
         }
