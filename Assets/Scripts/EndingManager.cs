@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EndingManager : MonoBehaviour
@@ -13,7 +14,7 @@ public class EndingManager : MonoBehaviour
     public GameObject SkipPopup = null;
     public Image AdditionalPicture = null;
 
-    public SceneList SceneToPlay = SceneList.TBD;
+    public SceneList SceneToPlay = SceneList.Intro;
 
     public Sprite[] NormalEndingSprites;
     public Sprite[] TrueEndingSprites;
@@ -49,13 +50,9 @@ public class EndingManager : MonoBehaviour
 
     public enum SceneList
     {
-        NormalEnding,
-        TrueEnding,
-        AlienEnding,
-        AlienEnding2,
-        HeirloomSceneInCave,
-        HeirloomSceneInShrine,
-        TBD
+        Intro,
+        Ending,
+        CreepyPasta
     }
 
 
@@ -64,28 +61,6 @@ public class EndingManager : MonoBehaviour
         CG = GetComponent<CanvasGroup>();
 
         currentImageStartPos = CurrentPicture.transform.localPosition;
-
-        if (SceneToPlay == SceneList.TBD)
-        {
-            SceneToPlay = EndingEarned;
-        }
-
-        if (BadEndingFlash != null) StartCoroutine(StartSceneAfterFade());
-        else StartScene();
-    }
-
-    private IEnumerator StartSceneAfterFade()
-    {
-        if (SceneToPlay == SceneList.NormalEnding)
-        {
-            BadEndingFlash.SetActive(true);
-        }
-        else
-        {
-            GoodEndingFlash.SetActive(true);
-        }
-        yield return new WaitForSeconds(3.5f);
-
         StartScene();
     }
 
@@ -93,26 +68,14 @@ public class EndingManager : MonoBehaviour
     {
         switch (SceneToPlay)
         {
-            case SceneList.NormalEnding:
+            case SceneList.Intro:
                 scenePlaying = StartCoroutine(BadEnding());
                 break;
-            case SceneList.TrueEnding:
+            case SceneList.Ending:
                 scenePlaying = StartCoroutine(TrueEnding());
                 break;
-            case SceneList.AlienEnding:
-                scenePlaying = StartCoroutine(AlienEndingPart1());
-                break;
-            case SceneList.AlienEnding2:
-                scenePlaying = StartCoroutine(AlienEndingPart2());
-                break;
-            case SceneList.HeirloomSceneInCave:
-                scenePlaying = StartCoroutine(HeirloomScene());
-                break;
-            case SceneList.HeirloomSceneInShrine:
-                scenePlaying = StartCoroutine(ShrineHeirloomScene());
-                break;
-            default:
-                scenePlaying = StartCoroutine(BadEnding());
+            case SceneList.CreepyPasta:
+                scenePlaying = StartCoroutine(CreepyPasta());
                 break;
         }
     }
@@ -267,13 +230,13 @@ public class EndingManager : MonoBehaviour
         float timer = 0;
         while (timer < canvasFadeOutTime)
         {
-            if(SceneToPlay == SceneList.NormalEnding)
+            if(SceneToPlay == SceneList.Intro)
             {
-                NormalEndingMusic.volume = Mathf.Lerp(1, 0, timer / canvasFadeOutTime);
+                //NormalEndingMusic.volume = Mathf.Lerp(1, 0, timer / canvasFadeOutTime);
             }
-            else if (SceneToPlay == SceneList.AlienEnding2)
+            else if (SceneToPlay == SceneList.Ending)
             {
-                AlienEndingMusic.volume = Mathf.Lerp(1, 0, timer / canvasFadeOutTime);
+                //AlienEndingMusic.volume = Mathf.Lerp(1, 0, timer / canvasFadeOutTime);
             }
 
             CG.alpha = Mathf.Lerp(1, 0, timer / canvasFadeOutTime);
@@ -281,14 +244,14 @@ public class EndingManager : MonoBehaviour
             yield return null;
         }
         CG.alpha = 0;
-        if (SceneToPlay == SceneList.NormalEnding)
+        if (SceneToPlay == SceneList.Intro)
         {
-            NormalEndingMusic.volume = 0;
-            CreditsMusic.Play();
+            //NormalEndingMusic.volume = 0;
+            //CreditsMusic.Play();
         }
-        else if (SceneToPlay == SceneList.AlienEnding2)
+        else if (SceneToPlay == SceneList.Ending)
         {
-            AlienEndingMusic.volume = 0;
+            //AlienEndingMusic.volume = 0;
         }
     }
 
@@ -306,132 +269,47 @@ public class EndingManager : MonoBehaviour
 
     private IEnumerator BadEnding()
     {
-        NormalEndingMusic.Play();
-
-        /*I can't quite say I "woke up" some time later. It was like I was just there. Outside.
-In a version of Kisaragi with thin, hungry-looking people shambling about. In the tunnel 
-one moment, outside the next.*/
-
-        StartCoroutine(FadeInImage(NormalEndingSprites[0], 1160, 550));
-        yield return StartCoroutine(FadeInText(@"I can't quite say I ""woke up"" some time later. It was like I was just there. Outside. In a version of Kisaragi with thin, hungry - looking people shambling about. In the tunnel one moment, outside the next."));
+        yield return StartCoroutine(FadeInText(@"I was supposed to be home hours ago."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        /*I wandered along the train tracks, shoulders slumped. My phone had no battery,
-        and I had nothing to eat or drink for what felt like... a whole day.*/
-
-        yield return StartCoroutine(FadeInText(@"I wandered along the train tracks, shoulders slumped. My phone had no battery, and I had nothing to eat or drink for what felt like... a whole day."));
+        yield return StartCoroutine(FadeInText(@"It was a simple gig, but many hours away, in a small town I had never been."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        /*I looked back 
-        in the direction of Kisaragi and had a vision - the town once more filled with 
-        floating heads, all staring at that giant one above... but this time it was a woman.
-        Noriko? Was it her? It didn't seem quite right, but the vision was momentary.*/
-
-        StartCoroutine(FadeInAdditionalImage());
-        yield return new WaitForSeconds(1);
-        yield return StartCoroutine(FadeInText(@"I looked back in the direction of Kisaragi and had a vision - the town once more filled with floating heads, all staring at that giant one above... but this time it was a woman. Noriko? Was it her? It didn't seem quite right, but the vision was momentary."));
+        yield return StartCoroutine(FadeInText(@"A few hours into my ride back my truck started acting up, and I had to stop by the mechanic. I spent an arm and a leg but it seemed to be fixed, and it wasn't till 9PM that they were done with 6 hours left to drive."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        /*I was near collapse when I encountered that neighboring town. An old woman saw me 
-        in my haggard state and invited me in for breakfast and a nap on a spare futon. 
-        Thankfully, the ATM and phones in town worked, though no luck charging my dead phone.*/
-
-        StartCoroutine(FadeInImage(NormalEndingSprites[1], 1160, 550));
-        StartCoroutine(FadeOutAdditionalImage());
-        yield return StartCoroutine(FadeInText(@"I was near collapse when I encountered that neighboring town. An old woman saw me in my haggard state and invited me in for breakfast and a nap on a spare futon.  Thankfully, the ATM and phones in town worked, though no luck charging my dead phone."));
+        yield return StartCoroutine(FadeInText(@"I continued the drive home, but all at once it hit me just how much I had been overworked lately. I was exhausted. I nearly swerved into oncoming traffic and realized I couldn't make it."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        /*I got home. My family was worried, but relieved to see me.*/
-
-        yield return StartCoroutine(FadeInText(@"I got home. My family was worried, but relieved to see me."));
+        yield return StartCoroutine(FadeInText(@"There was only one hotel in this town and it was being renovated, so I had to get an AirBNB."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        /*My exams had actually gone alright. The truth is, I don't know exactly what I was 
-        so afraid of. I just had had this overwhelming feeling of panic. My heart was racing. 
-        I was sure it was the curse. I felt I had to go to Kisaragi, finally.*/
-
-        StartCoroutine(FadeInImage(NormalEndingSprites[2], 700, 905));
-
-        yield return StartCoroutine(FadeInText(@"My exams had actually gone alright. The truth is, I don't know exactly what I was so afraid of. I just had had this overwhelming feeling of panic. My heart was racing. I was sure it was the curse. I felt I had to go to Kisaragi, finally."));
+        yield return StartCoroutine(FadeInText(@"There was only one available, $130 a night before fees, and with a rating of 1.2. Unbelievable, but can't be worse than some of the places I have stayed."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        /*And now I had gone. And I had survived. Wasn't that enough?*/
-
-        yield return StartCoroutine(FadeInText(@"And now I had gone. And I had survived. Wasn't that enough?"));
+        yield return StartCoroutine(FadeInText(@"It was down a long, winding road in the woods. Eventually, the path narrowed so much that I couldn't take my truck any further."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        /*I never had a clear picture of what happened there. I started therapy, I got 
-        a prescription. The visions stopped. For a while.*/
-
-        StartCoroutine(FadeInImage(NormalEndingSprites[3], 1160, 550));
-        yield return StartCoroutine(FadeInText(@"I never had a clear picture of what happened there. I started therapy, I got a prescription. The visions stopped. For a while."));
+        yield return StartCoroutine(FadeInText(@"I followed the path another half mile until finally I see it. More a cabin than a house, really."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        /*I kept the heirloom. In Kisaragi, holding it had felt... odd. Some part of it felt comforting,
-        but another part of it felt... wrong. Like a warbling in my head when I held it. 
-        It got worse as time went by, so I put it in a box and forgot about it.*/
-
-        yield return StartCoroutine(FadeInText(@"I kept the heirloom. In Kisaragi, holding it had felt... odd. Some part of it felt comforting, but another part of it felt... wrong. Like a warbling in my head when I held it. It got worse as time went by, so I put it in a box and forgot about it."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        /*I learned to cope with the sense of dread. The visions would happen infrequently
-        over the years but I still never got a clear picture of the giant face in the sky.
-        It looked something like Aunt Noriko but... Colder. Less like 
-        the kind aunt I knew and more ... menacing. I dreaded seeing her.*/
-
-        StartCoroutine(FadeInAdditionalImageAfterFadeout());
-        yield return StartCoroutine(FadeInText(@"I learned to cope with the sense of dread. The visions would happen infrequently over the years but I still never got a clear picture of the giant face in the sky. It looked something like Aunt Noriko but... Colder. Less like the kind aunt I knew and more ... menacing. I dreaded seeing her."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        /*And yet, the visions returned despite changes in my life. Even as the years went by, 
-        even when my sister got killed in that accident, even when I got married and 
-        even when my daughter was born.*/
-
-        yield return StartCoroutine(FadeInText(@"And yet, the visions returned despite changes in my life. Even as the years went by, even when my sister got killed in that accident, even when I got married and even when my daughter was born."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        /* I loved my baby more than anything, little Tomoko. 
-        And I felt that woman's face... her eyes seemed to focus more intently when I held her.*/
-
-        yield return StartCoroutine(FadeInText(@"I loved my baby more than anything, little Tomoko. And I felt that woman's face... her eyes seemed to focus more intently when I held her."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        /*One day, the panic came back, impossible to ignore. So I said silent goodbyes and 
-        found that cargo train back to Kisaragi. I can't say it was to finish what I'd 
-        started - it was too late for that.*/
-
-        yield return StartCoroutine(FadeInText(@"One day, the panic came back, impossible to ignore. So I said silent goodbyes and found that cargo train back to Kisaragi. I can't say it was to finish what I'd started - it was too late for that."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        /*It felt like Noriko needed me to find something else she'd left behind.*/
-
-        yield return StartCoroutine(FadeInText(@"It felt like Noriko needed me to find something else she'd left behind."));
+        yield return StartCoroutine(FadeInText(@"I typed in the keycode on the lockbox by the front door. After three tries it opened, and I grabbed the key, went inside the shit-hole, and locked the door behind me."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
@@ -440,54 +318,49 @@ one moment, outside the next.*/
         scenePlaying = null;
     }
 
-    private IEnumerator AlienEndingPart1()
+    private IEnumerator CreepyPasta()
     {
-        AlienEndingMusic.Play();
-
-        StartCoroutine(FadeInImage(NormalEndingSprites[1], 1160, 550));
-        yield return StartCoroutine(FadeInText(@"Kaede ran, full tilt, out of that godforsaken town. If there was one thing she was done with, it was small town horror. Eventually she reached the next town over, palm-slapped her card into an ATM and went to a bar. ""I need a beer."" The barkeep probably thought it was early but one look at her face and he knew not to refuse."));
+        yield return StartCoroutine(FadeInText(@"[This game was inspired by a creepypasta I once read by the name of ""The Portraits"". The author is unknown.]"));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        StartCoroutine(FadeInImage(AlienEndingSprites[0], 1160, 550));
-        yield return StartCoroutine(FadeInText(@"She stepped out, ready to go home when she felt herself lift off the ground. ""Oh, what now?"" She was being abducted!"));
+        yield return StartCoroutine(FadeInText(@"There was a hunter in the woods, who, after a long day hunting, was in the middle of an immense forest. It was getting dark, and having lost his bearings, he decided to head in one direction until he was clear of the increasingly oppressive foliage."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        StartCoroutine(FadeInImage(AlienEndingSprites[1], 1160, 550));
-        yield return StartCoroutine(FadeInText(@"The aliens had large heads, but... I mean. Not that big, all things considered."));
+        yield return StartCoroutine(FadeInText(@"After what seemed like hours, he came across a cabin in a small clearing. Realizing how dark it had grown, he decided to see if he could stay there for the night. He approached and found the door ajar."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"""We need your help, Kaede,"" the h- er, leader alien said. ""My name is Data Sushi. Our planet has been overrun with monsters that have big heads. They're huge!"""));
+        yield return StartCoroutine(FadeInText(@"Nobody was inside."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"""How are you speaking Japanese?"" Kaede asked."));
+        yield return StartCoroutine(FadeInText(@"The hunter flopped down on the single bed, deciding to explain himself to the owner in the morning. As he looked around, he was surprised to see the walls adorned by many portraits, all painted in incredible detail."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"""Google Translate. Look, we have a lot of advanced technology like that, but we really need someone who can get in their... h - heads. Sorry for the pun. It is what it is."""));
+        yield return StartCoroutine(FadeInText(@"Without exception, they appeared to be staring down at him, their features twisted into looks of hatred. Staring back, he grew increasingly uncomfortable."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"Kaede nodded. ""Well I can certainly get in their heads. I am very empathetic."""));
+        yield return StartCoroutine(FadeInText(@" Making a concerted effort to ignore the many hateful faces, he turned to face the wall, and exhausted, he fell into a restless sleep."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"Data Sushi pulled his alien collar. ""No no, I mean the thing where you can see through their eyes. I don't really give a shit what they're thinking or feeling. They're giant heads. Oh no! Wait, some are coming right now! Quick! Grab the wheel of our UFO and shoot em up!"""));
+        yield return StartCoroutine(FadeInText(@"Face down in an unfamiliar bed, he turned blinking in unexpected sunlight."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"Control the ship with A and D. Use Spacebar to fire the laser. Don't let any get by!"));
+        yield return StartCoroutine(FadeInText(@"Looking up, he discovered that the cabin had no portraits, only windows."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
@@ -496,40 +369,10 @@ one moment, outside the next.*/
         scenePlaying = null;
     }
 
-    private IEnumerator AlienEndingPart2()
-    {
-        CurrentPicture.sprite = AlienEndingSprites[1];
-        //CurrentPicture.rectTransform.sizeDelta = new Vector2(1150, 550);
-
-        StartCoroutine(FadeInCanvasGroup());
-
-        yield return StartCoroutine(FadeInText(@"""I'm glad we destroyed them,"" Data Sushi said."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"""Well now what?"" Kaede asked."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"""I'm thinking we either put you in a pocket dimension where you fight evil for all eternity, or we erase your memory and you get to go home and we all just do the good ending and pretend this part never happened."""));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"""Well,"" mused Kaede. ""Let's just go with the good ending."""));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        SkipEnding();
-        scenePlaying = null;
-    }
 
     private IEnumerator TrueEnding()
     {
-        TrueEndingMusic.Play();
+        //TrueEndingMusic.Play();
 
         StartCoroutine(FadeInImage(NormalEndingSprites[1], 1160, 550));
         yield return StartCoroutine(FadeInText(@"Daylight, finally, met me on the other side of the tunnel. I could only have been gone for one long night, but it felt like much longer. Somehow, I found the strength to walk down the tracks. I was physically exhausted, but I felt something had been lifted from me."));
@@ -590,104 +433,14 @@ one moment, outside the next.*/
         scenePlaying = null;
     }
 
-    private IEnumerator HeirloomScene()
-    {
-        yield return StartCoroutine(FadeInText(@"Kaede..."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"I knew you would find your way here and fulfill our family destiny. I know it is too late for me, and unfortunately the heirloom is powerless here."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"All you have to do now is get out of this horrible town. Once you are out of its influence, the heirloom will protect you. I know you can do this."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"Farewell, my niece."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(EndEnding());
-        scenePlaying = null;
-    }
-
-    private IEnumerator ShrineHeirloomScene()
-    {
-        //StartCoroutine(FadeInImage(NorikoPicFromIntro));
-        yield return StartCoroutine(FadeInText(@"I am so sorry you came here, Kaede."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"I never would have wanted you to come to this dreadful place or put this responsibility on you. I know I don't have long left, but I am cursed by visions of you coming to this place and the only solace I can find is the vision of you finding me here."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"I was captured and locked here by a former friend. I often confided in her--and I often talked about you, and for that I am truly sorry."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"She changed when her husband died. Most likely, Meio was responsible, at the least she believed it was him. She became an outcast but I never expected her to be capable of something like this."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"She began impersonating me in an attempt to bring you here. I do not fully understand her plans, but she created an artifact based on our family heirloom intended to somehow usurp Meio's ascension. She needed you to obtain it and use its power."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"However, with this--our true family heirloom, I know that you can escape and free yourself from this curse. Please leave, and never return. Live a great life and put this place behind you."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(FadeInText(@"Goodbye, little Kaede."));
-        ProceedIcon.SetActive(true);
-        yield return StartCoroutine(WaitForProceed());
-        ProceedIcon.SetActive(false);
-
-        yield return StartCoroutine(EndEnding());
-        scenePlaying = null;
-    }
-
     private IEnumerator EndEnding()
-    {
-        if (SceneToPlay == SceneList.AlienEnding)
-        {
-            StartCoroutine(FadeOutText());
-            yield return StartCoroutine(FadeOutCanvasGroup());
-            StopAllCoroutines();
-            SceneToPlay = SceneList.AlienEnding2;
-            fadingOut = null;
-            //Play Schmup
-            UFOMiniGame.SetActive(true);
-            NonUFOMiniGameUI.SetActive(false);
-        }
-        else if (SceneToPlay == SceneList.AlienEnding2)
-        {
-            StartCoroutine(FadeOutText());
-            StartCoroutine(FadeOutImage());
-            yield return StartCoroutine(FadeOutCanvasGroup());
-            StopAllCoroutines();
-            SceneToPlay = SceneList.TrueEnding;
-            StartScene();
-            StartCoroutine(FadeInCanvasGroup());
-            fadingOut = null;
-        }
-        else {
-            yield return StartCoroutine(FadeOutCanvasGroup());
-            StopAllCoroutines();
-            scenePlaying = null;
-            if (Credits != null) Credits.SetActive(true);
+    {  
+        yield return StartCoroutine(FadeOutCanvasGroup());
+        StopAllCoroutines();
+        scenePlaying = null;
+        if (Credits != null) Credits.SetActive(true);
+        if (SceneToPlay == SceneList.Intro) SceneManager.LoadScene("Indoors");
+        if (SceneToPlay == SceneList.CreepyPasta) SceneManager.LoadScene("TitleScreen");
             gameObject.SetActive(false);
-        }
     }
 }

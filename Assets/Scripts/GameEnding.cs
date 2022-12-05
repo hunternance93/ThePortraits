@@ -174,18 +174,7 @@ public class GameEnding : MonoBehaviour
 
     private IEnumerator GameWonCoroutine()
     {
-        yield return StartCoroutine(InGameEndingCutscene.EndOfGameCutscene());
-
-        GameManager.instance.UpdatePlaytime();
-
-        EndingManager.SceneList endingToPlay = EndingManager.SceneList.NormalEnding;
-        if (GameManager.instance.Player.InventoryContains("True Family Heirloom"))
-        {
-            if (GameManager.instance.CurrentGameMode == GameManager.GameMode.Hardcore) endingToPlay = EndingManager.SceneList.AlienEnding;
-            else endingToPlay = EndingManager.SceneList.TrueEnding;
-        }
-        EndingManager.EndingEarned = endingToPlay;
-        SceneManager.LoadScene("EndingScene");
+        yield return null;
     }
 
     public IEnumerator RetryAsyncLoad(string sceneName)

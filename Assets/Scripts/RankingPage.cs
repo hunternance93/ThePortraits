@@ -49,46 +49,6 @@ public class RankingPage : MonoBehaviour
         routine = null;
     }
 
-    public void PopulateRankingFields(EndingManager.SceneList scene)
-    {
-        ModeField.text = "Game Mode: " + GameManager.instance.CurrentGameMode;
-
-        switch (scene) {
-            case EndingManager.SceneList.AlienEnding:
-                EndingField.text = "Ending: The Galaxy Is At Peace";
-                RankingImage.sprite = AlienSprite;
-                break;
-            case EndingManager.SceneList.TrueEnding:
-                EndingField.text = "Ending: Free From The Curse";
-                RankingImage.sprite = TrueSprite;
-                break;
-            default:
-                EndingField.text = "Ending: Drawn to Kisaragi";
-                break;        
-        }
-
-        int deaths = PlayerPrefs.HasKey("PlayerDeaths") ? PlayerPrefs.GetInt("PlayerDeaths") : 0;
-        DeathsField.text = "Deaths: " + deaths;
-
-        //Should only be null if you load this scene out of order or run in editor
-        try
-        {
-            JournalEntryField.text = "Journal Entries Found: " + GameManager.instance.JournalListCount() + "/" + GameManager.instance.NumberOfJournalEntriesInGame;
-
-            TimeField.text = "Time Taken: " + GameManager.instance.GetPlaytime();
-            if (GameManager.instance.GetPlayTimeInSeconds() < 3600)
-            {
-                if ((GameManager.instance.CurrentGameMode == GameManager.GameMode.Hardcore || GameManager.instance.CurrentGameMode == GameManager.GameMode.Normal) && !PlayerPrefs.HasKey("DifficultySwitchedToStory"))
-                {
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogWarning("Failed to access GameManager: " + e.StackTrace);
-        }
-    }
-
     void Update()
     {
         if (routine != null)

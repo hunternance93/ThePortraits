@@ -369,6 +369,5 @@ public class IntroSceneManager : MonoBehaviour
         yield return WaitForProceed();
         yield return StartCoroutine(ReceiveMessage("kaede?"));
         yield return WaitForProceed();
-        TitleController.ImmediatelyLoadNewGame();
     }
 }

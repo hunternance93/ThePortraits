@@ -86,7 +86,6 @@ public class CreditsManager : MonoBehaviour
         }
         CG.alpha = 0;
         RankingPage.gameObject.SetActive(true);
-        RankingPage.PopulateRankingFields(EndingManager.EndingEarned);
         CG.gameObject.SetActive(false);
     }
     
@@ -103,7 +102,6 @@ public class CreditsManager : MonoBehaviour
             }
             CG.alpha = 0;
             RankingPage.gameObject.SetActive(true);
-            RankingPage.PopulateRankingFields(EndingManager.EndingEarned);
             CG.gameObject.SetActive(false);
         }
     }
