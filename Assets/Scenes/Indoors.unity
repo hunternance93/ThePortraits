@@ -3865,6 +3865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 653260038}
   - component: {fileID: 653260039}
+  - component: {fileID: 653260036}
   m_Layer: 3
   m_Name: Post-process Volume
   m_TagString: Untagged
@@ -3872,6 +3873,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &653260036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653260035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7d019ce6d36ab418272c1409788a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VolProfile: {fileID: 11400000, guid: 4abc7fcb5029e4c46a9b7ab5f170f116, type: 2}
+  LookingAtPortrait: 0
 --- !u!4 &653260038
 Transform:
   m_ObjectHideFlags: 0
@@ -6792,6 +6807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1569e96fe3a94149adce5da42367b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Staring: {fileID: 653260036}
   TerrorGazeEnabled: 0
 --- !u!4 &1213298480
 Transform:

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PortraitManager : MonoBehaviour
 {
+    public StaringAtPortrait Staring = null;
+
     [HideInInspector] public static PortraitManager instance = null;
 
     private int phase = 0;
@@ -28,6 +30,10 @@ public class PortraitManager : MonoBehaviour
 
     public void HandlePortraitInteract()
     {
+        Staring.SetStaring(!Staring.LookingAtPortrait);
+
+        return;
+
         switch (phase)
         {
             case 0:
