@@ -25,8 +25,6 @@ public class GameEnding : MonoBehaviour
     public AudioSource gameEndingAudio = null;
     public GameObject StoryModeGameOverFlashObjectPrefab = null;
     public GameObject CanvasObj;
-    [Tooltip("Optional--only needed for final scene")]
-    public InGameEndingCutscene InGameEndingCutscene = null;
 
     private AsyncOperation reloadScene = null;
     private IEnumerator asyncReloadRoutine = null;
@@ -93,7 +91,7 @@ public class GameEnding : MonoBehaviour
         GameManager.instance.PauseGame();
         AudioManager.instance.PlayDeath();
         AudioManager.instance.StopPlayerMovementAudio();
-        GameManager.instance.Player.PCS.SetPlayerMeshRenderers(false);
+        //GameManager.instance.Player.PCS.SetPlayerMeshRenderers(false);
         if (GameManager.instance.CurrentGameMode == GameManager.GameMode.Hardcore) initialSelected.gameObject.SetActive(false);
         GameOverOptionsCanvasGroup.interactable = true;
         GameOverOptionsCanvasGroup.blocksRaycasts = true;
@@ -147,8 +145,6 @@ public class GameEnding : MonoBehaviour
         
         AudioManager.instance.StopPlayerMovementAudio();
         GameManager.instance.IncreaseDeaths();
-        //Need to force Sightjacking to end
-        GameManager.instance.Player.PCS.InstantlyEndSightjacking();
 
         deathCamera.LookAt = enemyThatCaught;
         deathCamera.Priority = 999;
@@ -163,13 +159,12 @@ public class GameEnding : MonoBehaviour
         deathCamera.LookAt = null;
         if (enemy.GetState() == EnemyAI.EnemyState.Chasing) GameManager.instance.Player.EnemyAggroCount--;
         enemy.transform.position = new Vector3(0, -500, 0);
-        GameManager.instance.Player.SetSightJackCams(GameManager.instance.Player.PCS.GhostPOVs);
 
         IsGameOver = false;
         GameManager.instance.UnPauseGame();
 
         //Do this a second time in case any effects caused the sightjack audio to play again
-        GameManager.instance.Player.PCS.InstantlyEndSightjacking();
+        //GameManager.instance.Player.PCS.InstantlyEndSightjacking();
     }
 
     private IEnumerator GameWonCoroutine()

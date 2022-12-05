@@ -66,33 +66,9 @@ public class PauseMenuController : MonoBehaviour
         }
 
         GameManager.instance.controls.PlayerControl.Pause.performed += context => PauseGame();
-        GameManager.instance.controls.Sightjacking.Pause.performed += context => PauseGame();
         GameManager.instance.controls.None.Pause.performed += context => PauseGame();
         GameManager.instance.controls.UI.Back.performed += Back;
-        GameManager.instance.controls.PlayerControl.Inventory.performed += context => GoStraightToInventoryPage();
-        GameManager.instance.controls.Sightjacking.Inventory.performed += context => GoStraightToInventoryPage();
-        GameManager.instance.controls.None.Inventory.performed += context => GoStraightToInventoryPage();
-        GameManager.instance.controls.UI.Inventory.performed += context => HandleInventoryButton();
-        GameManager.instance.controls.UI.JournalArchive.performed += context => SwitchToArchive();
-        GameManager.instance.controls.PlayerControl.JournalArchive.performed +=
-            context => GameManager.instance.Journal.OpenJournalArchive();
-        GameManager.instance.controls.Sightjacking.JournalArchive.performed +=
-            context => GameManager.instance.Journal.OpenJournalArchive();
 
-    }
-
-    private void Start()
-    {
-        if (!TitleScreen)
-        {
-            if (GameManager.instance.CurrentGameMode != GameManager.GameMode.Normal && GameManager.instance.CurrentGameMode != GameManager.GameMode.Story) return;
-            SwitchGameModeButton.SetActive(true);
-            string gameMode = GameManager.instance.CurrentGameMode == GameManager.GameMode.Normal ? "Story" : "Normal";
-            StoryModeText.text = "Switch To " + gameMode + " Difficulty";
-            Navigation backNav = settingsBackButton.navigation;
-            backNav.selectOnUp = SwitchGameModeButton.GetComponentInChildren<Button>();
-            settingsBackButton.navigation = backNav;
-        }
     }
 
     private void Back(InputAction.CallbackContext obj)

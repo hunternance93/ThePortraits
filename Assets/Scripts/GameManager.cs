@@ -108,15 +108,12 @@ public class GameManager : MonoBehaviour
 
         if (Application.isEditor)
         {
-            controls.Debug.GetAllJournals.performed += context => GetAllJournals();
-            controls.Debug.Enable();
             Debug.Log("GameManager is loaded for the first time, and we are in Editor, so we should reload everything (including checkpoints)");
             SaveGameManager.Instance.ReloadDataFromFile();
             SaveGameManager.Instance.LoadAllData();
         }
         else
         {
-            controls.Debug.Disable();
         }
 
         ParseGameMode();
@@ -219,7 +216,6 @@ public class GameManager : MonoBehaviour
 
     public void AlertPCSThatNoLongerStunned(EnemyAI enemy)
     {
-        Player.PCS.EnemyNoLongerStunned(enemy);
     }
 
     public InputActionMap GetInput()
@@ -537,16 +533,13 @@ public class GameManager : MonoBehaviour
     public void ApplyGraphicsQuality()
     {
         string quality = GetGraphicsQuality();
-        if (Player != null && Player.isSightJacking && Player.PCS.CurrentSightjackIsOverseer) ApplyOverseerGraphicsQuality();
-        else
-        {
+
             GameObject[] vcams = GameObject.FindGameObjectsWithTag("VirtualCamera");
             foreach (GameObject vcam in vcams)
             {
                 vcam.GetComponent<CinemachineVirtualCamera>().m_Lens.FarClipPlane =
                     GraphicsQuality.Presets[quality].DrawDistance;
             }
-        }
 
         foreach (Camera c in additionalCamerasToSetViewDistance)
         {

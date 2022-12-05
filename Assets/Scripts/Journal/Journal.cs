@@ -92,19 +92,6 @@ public class Journal : MonoBehaviour
             GameManager.instance.PauseGame();
             UnityEngine.Cursor.lockState = CursorLockMode.None;
         }
-        
-        GameManager.instance.SwitchInput(GameManager.instance.controls.JournalArchive.Get());
-        
-        if (!archiveInputInitialized)
-        {
-            GameManager.instance.controls.JournalArchive.PreviousEntry.performed += context => PreviousEntry();
-            GameManager.instance.controls.JournalArchive.NextEntry.performed += context => NextEntry();
-            GameManager.instance.controls.JournalArchive.NextArea.performed += context => NextArea();
-            GameManager.instance.controls.JournalArchive.PreviousArea.performed += context => PreviousArea();
-            GameManager.instance.controls.JournalArchive.Exit.performed += context => gameObject.SetActive(false);
-            GameManager.instance.controls.JournalArchive.ToggleBackground.performed += context => ToggleBackground();
-            archiveInputInitialized = true;
-        }
 
         AudioManager.instance.PlayOpenJournal();
     }

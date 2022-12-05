@@ -16,11 +16,6 @@ public class SaveGameManager : MonoBehaviour
     
     private void Start()
     {
-        GameManager.instance.controls.Debug.Loadsave.performed += context =>
-        {
-            ReloadDataFromFile();
-            LoadAllData();
-        };
     }
 
     public void SaveInventory()

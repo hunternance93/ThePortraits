@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     public Transform PlayerLeftSide = null;
     public Transform PlayerRightSide = null;
     public Transform PlayerChest = null;
-    public PlayerCameraSwitcher PCS = null;
     public FirstPersonController FPSController = null;
 
     public GameObject standingMesh = null;
@@ -80,12 +79,6 @@ public class Player : MonoBehaviour
 
     public void SwapOverlayColor()
     {
-        if (!HasOverlaySwappedColor)
-        {
-            PCS.StunAbilityOverlay.GetComponent<Image>().color = TrueHeirloomFlash.targetColor;
-            PCS.AccessibleStunAbilityOverlay.GetComponent<Image>().color = TrueHeirloomFlash.targetColor;
-            HasOverlaySwappedColor = true;
-        }
     }
 
     public void updateLightCount(int change)
@@ -144,29 +137,15 @@ public class Player : MonoBehaviour
     //Check if current sightjack cam list is the exact same list we're trying to change to (ignore order)
     public bool SightJackCamsAre(GameObject[] compareCamObjs)
     {
-        foreach (GameObject g in compareCamObjs) {
-            bool match = false;
-            foreach (GameObject f in PCS.GhostPOVs)
-            {
-                if (g == f) match = true;
-            }
-            if (!match) return false;
-        }
         return true;
     }
 
     public void SetSightJackCams(GameObject[] newCams)
     {
-        PCS.SetGhostPOVs(newCams);
-        PCS.ResetGhostCamIndex();
     }
 
     public void IndicateNewSightjackCams(GameObject visionCam, float extraBuildUpToVision = 0, bool empoweredHeirloomScene = false)
     {
-        if (visionCam)
-        {
-            PCS.ShowVision(visionCam, extraBuildUpToVision, empoweredHeirloomScene);
-        }
     }
 
     public void SetCrouchedOrStandingModel()

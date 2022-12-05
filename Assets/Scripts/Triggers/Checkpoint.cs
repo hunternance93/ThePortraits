@@ -14,8 +14,6 @@ public class Checkpoint : MonoBehaviour
     public GameObject[] ObjectsToActivateOnLoad = null;
     [Tooltip("A list of enemies to instantly move to their destination (for enemies that normally move from a trigger initially")]
     public EnemyAI[] EnemiesToMoveToDestination = null;
-    [Tooltip("Used just to move the enemy that changes position when you touch the ladder when loading checkpoint")]
-    public LadderInteractable LadderScript = null;
     [Tooltip("A list of doors to instantly open on start (for doors that should already be open by checkpoint)")]
     public UnlockableDoorInteractable[] DoorsToOpen = null;
     [Tooltip("A list of sightjack cameras to start with on this load. If same as default leave blank.")]
@@ -71,7 +69,6 @@ public class Checkpoint : MonoBehaviour
         {
             enemy.SwapDirection();
         }
-        if (LadderScript != null) LadderScript.MoveEnemy();
         if (SightJackCams != null && SightJackCams.Length > 0) GameManager.instance.Player.SetSightJackCams(SightJackCams);
 
         if (bigHeadLAP != null) bigHeadLAP.SetToPosition(bigHeadTarget);
