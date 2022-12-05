@@ -37,10 +37,8 @@ public class StaringAtPortrait : MonoBehaviour
 
     public void SetStaring(bool isStaring)
     {
-        Debug.Log("Setting staring: " + isStaring);
         LookingAtPortrait = isStaring;
         if (pulseEffectsRoutine != null) return;
-        Debug.Log("Not pulsing");
         if (LookingAtPortrait)
         {
             if (beginEffectsRoutine == null)
@@ -50,7 +48,6 @@ public class StaringAtPortrait : MonoBehaviour
                     StopCoroutine(endEffectsRoutine);
                     endEffectsRoutine = null;
                 }
-                Debug.Log("Begin effects");
                 beginEffectsRoutine = StartCoroutine(BeginEffects());
             }
         }
@@ -63,7 +60,6 @@ public class StaringAtPortrait : MonoBehaviour
                     StopCoroutine(beginEffectsRoutine);
                     beginEffectsRoutine = null;
                 }
-                Debug.Log("End effects");
                 endEffectsRoutine = StartCoroutine(EndEffects());
             }
         }
@@ -74,15 +70,12 @@ public class StaringAtPortrait : MonoBehaviour
         if (vig.intensity.value <= MIN_VIG)
         {
             timer = Mathf.Lerp(0, TIME_TO_REACH_EFFECTS, vig.intensity.value / MIN_VIG);
-            Debug.Log("Starting Timer val: " + timer);
             while (timer < TIME_TO_REACH_EFFECTS)
             {
                 vig.intensity.value = Mathf.Lerp(0, MIN_VIG, timer / TIME_TO_REACH_EFFECTS);
                 _CA.intensity.value = Mathf.Lerp(0, MIN_CA, timer / TIME_TO_REACH_EFFECTS);
                 ScarySounds.volume = Mathf.Lerp(0, MIN_VOLUME, timer / TIME_TO_REACH_EFFECTS);
                 timer += Time.deltaTime;
-                Debug.Log("Vig val: " + vig.intensity.value);
-                Debug.Log("CA val: " + _CA.intensity.value);
                 yield return null;
             }
         }

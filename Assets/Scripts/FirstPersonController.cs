@@ -332,7 +332,7 @@ public class FirstPersonController : MonoBehaviour
                     bool staringAtPortrait = false;
                     if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out portraitHit, 15, LayerMask.GetMask("InteractableObject"))) //TODO: Find out why assigning interactableMask in editor isn't working
                     {
-                        if (!Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, Vector3.Distance(playerCamera.transform.position, interactableHit.point), LayerMask.GetMask("Obstacles")))
+                        if (!Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, Vector3.Distance(playerCamera.transform.position, portraitHit.point), LayerMask.GetMask("Obstacles")))
                         {
                             if (portraitHit.transform.gameObject.GetComponent<PortraitInteractable>() != null)
                             {
