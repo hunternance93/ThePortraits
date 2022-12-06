@@ -27,6 +27,8 @@ public class TitleScreenStartGameController : MonoBehaviour
     public Button DevCommentaryNewGameButton = null;
     public AudioSource waterSound = null;
 
+    public GameObject[] objsToEnableWhenGameComplete = null;
+
     public TextMeshProUGUI StoryModeDescription = null;
     public TextMeshProUGUI CommentaryModeDescription = null;
 
@@ -42,6 +44,14 @@ public class TitleScreenStartGameController : MonoBehaviour
 
         GameManager.instance.SwitchInput(GameManager.instance.controls.UI.Get());
         Cursor.lockState = CursorLockMode.None;
+
+        if (PlayerPrefs.HasKey("HasBeatenGame") && PlayerPrefs.GetInt("HasBeatenGame") == 1)
+        {
+            foreach(GameObject go in objsToEnableWhenGameComplete)
+            {
+                go.SetActive(true);
+            }
+        }
     }
 
     public void HandleNewGame()
@@ -92,6 +102,16 @@ public class TitleScreenStartGameController : MonoBehaviour
         }
         TitleParentCG.alpha = 0;
         cg.alpha = 1;
+    }
+
+    public void OpenAtamaOnSteam()
+    {
+        Application.OpenURL("https://store.steampowered.com/app/2019840/Atama/");
+    }
+
+    public void OpenAtamaOnItch()
+    {
+        Application.OpenURL("https://teamzutsuu.itch.io/atama");
     }
 
     public void QuitGame()

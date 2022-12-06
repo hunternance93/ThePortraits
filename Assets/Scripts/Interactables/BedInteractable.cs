@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BedInteractable : MonoBehaviour, IInteractable
 {
@@ -83,6 +84,7 @@ public class BedInteractable : MonoBehaviour, IInteractable
         GameManager.instance.SwitchInput(GameManager.instance.controls.None.Get());
         GameManager.instance.DisplayMessage("They're still looking at me, but it isn't safe to go outside. I will have to wait till morning...", 10);
         yield return new WaitForSeconds(16);
-        PortraitManager.instance.SetPhase(2);
+        PortraitManager.instance.SetPhase(3);
+        SceneManager.LoadScene("Ending"); //TODO: Add the escape scene later
     }
 }

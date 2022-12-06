@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CreditsManager : MonoBehaviour
 {
     public float LengthOfCredits = 120;
 
-    public RankingPage RankingPage = null;
     public GameObject SkipPopup = null;
 
     private float timer = 0;
-    private float targetY = 0;
+    public float targetY = 0;
     private Vector3 startPos;
     private Vector3 tarPos;
 
@@ -38,10 +38,13 @@ public class CreditsManager : MonoBehaviour
 
     private void Initialize()
     {
-        float canvasHeight = GetComponentInParent<RectTransform>().rect.height;
-        float textHeight = TMP.bounds.size.y;
-        startPos = transform.localPosition;
-        targetY = textHeight - (canvasHeight * 5) - transform.localPosition.y;
+        if (targetY == 0)
+        {
+            float canvasHeight = GetComponentInParent<RectTransform>().rect.height;
+            float textHeight = TMP.bounds.size.y;
+            startPos = transform.localPosition;
+            targetY = textHeight - (canvasHeight * 5) - transform.localPosition.y;
+        }
         tarPos = new Vector3(transform.localPosition.x, targetY, transform.localPosition.z);
         initialized = true;
     }
@@ -85,8 +88,8 @@ public class CreditsManager : MonoBehaviour
             yield return null;
         }
         CG.alpha = 0;
-        RankingPage.gameObject.SetActive(true);
-        CG.gameObject.SetActive(false);
+        PlayerPrefs.SetInt("HasBeatenGame", 1);
+        SceneManager.LoadScene("TitleScreen");
     }
     
     private IEnumerator FadeOutCanvasGroup()
@@ -101,8 +104,9 @@ public class CreditsManager : MonoBehaviour
                 yield return null;
             }
             CG.alpha = 0;
-            RankingPage.gameObject.SetActive(true);
-            CG.gameObject.SetActive(false);
+            PlayerPrefs.SetInt("HasBeatenGame", 1);
+
+            SceneManager.LoadScene("TitleScreen");
         }
     }
 }

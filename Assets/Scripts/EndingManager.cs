@@ -373,58 +373,52 @@ public class EndingManager : MonoBehaviour
     private IEnumerator TrueEnding()
     {
         //TrueEndingMusic.Play();
-
-        StartCoroutine(FadeInImage(NormalEndingSprites[1], 1160, 550));
-        yield return StartCoroutine(FadeInText(@"Daylight, finally, met me on the other side of the tunnel. I could only have been gone for one long night, but it felt like much longer. Somehow, I found the strength to walk down the tracks. I was physically exhausted, but I felt something had been lifted from me."));
+        yield return StartCoroutine(FadeInText(@"I slam the door behind me and run as fast as I have in my life."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"I ran into a neighboring town some ways away. Thankfully, the ATM worked so I bought a meal and took a train - a normal one - home."));
+        yield return StartCoroutine(FadeInText(@"I speed forward down that winding path, nearly tripping on the trail--all the while hearing the footsteps of something following."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        StartCoroutine(FadeInImage(NormalEndingSprites[0]));
-        yield return StartCoroutine(FadeInText(@"Alarmingly, we passed through Kisaragi, which didn't seem right. But the town was somehow even more run down than I'd just seen, as if it had aged 50 years in the time it took me to leave the train tunnel."));
+        yield return StartCoroutine(FadeInText(@"Suddenly, I hear more and more footsteps and strange inhuman gurgling."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        StartCoroutine(FadeInImage(NormalEndingSprites[2], 700, 905));
-        yield return StartCoroutine(FadeInText(@"I got home. My parents and sister were worried. My exams had actually gone alright. The truth is I just had had this overwhelming sense that I couldn't face them."));
+        yield return StartCoroutine(FadeInText(@"Finally, I see my truck in the distance!"));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"I had been just so... flooded with this feeling of panic.  My heart was racing at the time and I was so sure it was the curse. Throughout our lives, my mother insisted it was all alright, but I just felt that cloud over me."));
+        yield return StartCoroutine(FadeInText(@"I fumble with the keys but get it unlocked and hop in."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"Well. Now I understood what had happened to that town; I had as clear a picture as you can get, anyway. I did leave haunted, still - in an inward way."));
+        yield return StartCoroutine(FadeInText(@"I slam the keys into the ignitition and turn them."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        StartCoroutine(FadeInImage(NormalEndingSprites[3], 1160, 550));
-        yield return StartCoroutine(FadeInText(@"Even having broken the curse, you don't leave an experience like that completely unscarred. But I learned to cope, with time. My therapist and my prescription mostly keep my anxiety in check."));
+        yield return StartCoroutine(FadeInText(@"Start!!"));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"Truthfully, I still get the occasional nightmare of seeing through the eyes of something horrible floating just around the corner..."));
+        yield return StartCoroutine(FadeInText(@"START, YOU PIECE OF SHIT!!!"));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        StartCoroutine(FadeInImage(TrueEndingSprites[0], 1160, 550));
-        yield return StartCoroutine(FadeInText(@"But, the sense of accomplishment, of doing what Aunt Noriko needed me to do in her stead... it drove me onward."));
+        yield return StartCoroutine(FadeInText(@"I see eyes in the distance, those same horrible portraits closing in slowly behind the trees."));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
 
-        yield return StartCoroutine(FadeInText(@"The heirloom never glowed again, but I kept it just the same."));
+        yield return StartCoroutine(FadeInText(@"START!!!"));
         ProceedIcon.SetActive(true);
         yield return StartCoroutine(WaitForProceed());
         ProceedIcon.SetActive(false);
@@ -445,5 +439,7 @@ public class EndingManager : MonoBehaviour
         }
         if (SceneToPlay == SceneList.CreepyPasta) SceneManager.LoadScene("TitleScreen");
             gameObject.SetActive(false);
+
+        if (SceneToPlay == SceneList.Ending) SceneManager.LoadScene("Credits");
     }
 }

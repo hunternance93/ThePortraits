@@ -1,0 +1,46 @@
+<b>Inspired by the creepypasta "The Portraits"</b>
+
+<b>Director / Lead Developer</b>
+Hunter Nance
+
+<b>Re-using some content from "Atama" by Team Zutsuu</b>
+
+<b>Team Zutsuu Members</b>
+Michael "slowbeef" Sawyer
+Christopher "Raqus" Rocco
+Oren Ronen
+
+<b>Artwork of "The Portraits"</b>
+Dorian Finn
+
+<b>Unity Store Assets</b>
+Brain Fail Productions - Food Pack Mixed
+Comp-3 Interactive - Modular PSX House Architecture Kit
+Lukas Bobor - Wasteland Cabin
+
+<b>Audio</b>
+FreeSound.Org users:
+
+Additional Sound Libraries Sampled
+Mixkit.co
+Ambient Land
+Real Soundz Free FX Library
+Fesliyan Studios
+MOHRG AN T
+picturetosound.com FX Library
+Iampagan
+
+Field Audio Recordings / Foley
+Christopher "Raqus" Rocco
+
+Some image assets generated with DALL-E
+
+<b>Special Thanks</b>
+<b>Team Zutsuu Members 
+(whose work was re-used for this project)</b>
+Michael "slowbeef" Sawyer
+Christopher "Raqus" Rocco
+Oren Ronen
+
+<size=500%>
+<pos=75%><sprite="MadeWithUnity" index=0>
