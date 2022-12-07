@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2
+    agentRadius: 0.1
+    agentHeight: 1
     agentSlope: 45
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.033333335
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: f1a453069bc38624bbf0f94041e1d0a4, type: 2}
 --- !u!4 &284754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4859029278130048, guid: 4796225296cb20b4995d92a186fe1010, type: 3}
@@ -323,6 +323,7 @@ MonoBehaviour:
   aud: {fileID: 0}
   kaedeDialogue: 
   toilet: {fileID: 628903184}
+  isFrontDoor: 0
 --- !u!65 &30728008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1650,13 +1651,16 @@ GameObject:
   m_Component:
   - component: {fileID: 306137543}
   - component: {fileID: 306137542}
+  - component: {fileID: 306137546}
+  - component: {fileID: 306137545}
+  - component: {fileID: 306137544}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: TempEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &306137542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1677,13 +1681,61 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306137541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.54, y: 1.85, z: 5.194}
+  m_LocalPosition: {x: -15.355, y: -1.755, z: 8.291}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 777495843}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &306137544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306137541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df5603e9abe40b49995e0e73c6d22a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &306137545
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306137541}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.25
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 1.28
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!136 &306137546
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306137541}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!4 &308512244 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4851565978934504, guid: ccebba70701c0f245bf8f19075efd2e8, type: 3}
@@ -2359,6 +2411,7 @@ MonoBehaviour:
   aud: {fileID: 0}
   kaedeDialogue: 
   toilet: {fileID: 0}
+  isFrontDoor: 0
 --- !u!4 &381571723 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4667088385317772, guid: 55aaa642a66c80b4e8148fff6b23e814, type: 3}
@@ -2685,7 +2738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2129014215357122120, guid: 80ea6106b405cf34fa025e3f0fcf5edb, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2129014215357122120, guid: 80ea6106b405cf34fa025e3f0fcf5edb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2877,7 +2930,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &454546075
 PrefabInstance:
@@ -3728,6 +3781,7 @@ MonoBehaviour:
   toilet: {fileID: 628903184}
   openedDoor: {fileID: 2096772093}
   bedroomDoor: {fileID: 2034971989}
+  TempEnemy: {fileID: 306137541}
 --- !u!1 &600214702
 GameObject:
   m_ObjectHideFlags: 0
@@ -5519,7 +5573,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 527083407632585076, guid: 37e34a5fd29cb4bd9b34bb1109a08573, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 527083407632585076, guid: 37e34a5fd29cb4bd9b34bb1109a08573, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5702,7 +5756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6147488583303333131, guid: 9e2be9b69d1f2924492e4e4de534a50a, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6147488583303333131, guid: 9e2be9b69d1f2924492e4e4de534a50a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6304,8 +6358,11 @@ Transform:
   - {fileID: 115408365}
   - {fileID: 36217640}
   - {fileID: 32872121}
+  - {fileID: 625900967}
+  - {fileID: 4064082318086430903}
+  - {fileID: 1250077702}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &898819168
 PrefabInstance:
@@ -7774,6 +7831,7 @@ MonoBehaviour:
   aud: {fileID: 0}
   kaedeDialogue: 
   toilet: {fileID: 0}
+  isFrontDoor: 0
 --- !u!4 &1090581763 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4480907089809266, guid: 4ba2307d7b6e6a54886262670699c11d, type: 3}
@@ -8092,7 +8150,7 @@ Transform:
   - {fileID: 838077548}
   - {fileID: 89826030}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1150911912
 GameObject:
@@ -8325,7 +8383,7 @@ Transform:
   m_Children:
   - {fileID: 653260038}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1227964865
 PrefabInstance:
@@ -8489,7 +8547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162962938503366715, guid: c2eb6887483534ccaac6bd55ae1b5a90, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8162962938503366715, guid: c2eb6887483534ccaac6bd55ae1b5a90, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8533,6 +8591,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2eb6887483534ccaac6bd55ae1b5a90, type: 3}
+--- !u!4 &1250077702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7350239199114250579, guid: 7d7b99f9c8d054bd394a8719f3f0ae73, type: 3}
+  m_PrefabInstance: {fileID: 1858501710}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1257239146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4455026889930626, guid: 67791c4ce16c99442ac667f6e8c08792, type: 3}
@@ -9318,7 +9381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8162962938503366715, guid: c2eb6887483534ccaac6bd55ae1b5a90, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8162962938503366715, guid: c2eb6887483534ccaac6bd55ae1b5a90, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9723,7 +9786,7 @@ Transform:
   - {fileID: 1902792696}
   - {fileID: 381571723}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1417941821 stripped
 Transform:
@@ -11901,6 +11964,7 @@ MonoBehaviour:
   aud: {fileID: 0}
   kaedeDialogue: 
   toilet: {fileID: 0}
+  isFrontDoor: 0
 --- !u!1 &1671758030
 GameObject:
   m_ObjectHideFlags: 0
@@ -11935,7 +11999,7 @@ Transform:
   - {fileID: 572372759}
   - {fileID: 110299761}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1678376738
 PrefabInstance:
@@ -12205,7 +12269,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!108 &1716092313
 Light:
@@ -12357,6 +12421,7 @@ MonoBehaviour:
   aud: {fileID: 0}
   kaedeDialogue: 
   toilet: {fileID: 0}
+  isFrontDoor: 1
 --- !u!1001 &1737183983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12997,15 +13062,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615254412740317034, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 123
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 1114788272773210219, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1114788272773210219, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2856989608543770070, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856989608543770070, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5174683770137168001, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
       propertyPath: m_RootOrder
@@ -13059,9 +13132,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5305198619923423848, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7007967050408482773, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007967050408482773, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7623407011778904333, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
       propertyPath: TargetAngle
@@ -13520,7 +13601,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 895325414}
     m_Modifications:
     - target: {fileID: 3478995284909797152, guid: 7d7b99f9c8d054bd394a8719f3f0ae73, type: 3}
       propertyPath: m_Name
@@ -13532,7 +13613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7350239199114250579, guid: 7d7b99f9c8d054bd394a8719f3f0ae73, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7350239199114250579, guid: 7d7b99f9c8d054bd394a8719f3f0ae73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13610,6 +13691,7 @@ MonoBehaviour:
   aud: {fileID: 0}
   kaedeDialogue: 
   toilet: {fileID: 0}
+  isFrontDoor: 0
 --- !u!64 &1867403636
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13738,7 +13820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615254412740317034, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 123
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 1114788272773210219, guid: ea47e67b50d49450396c0b879c6ab82c, type: 3}
       propertyPath: m_Layer
@@ -13868,7 +13950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8956363844398636224, guid: 44620081988ae31418ba47d439d3b3a1, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8956363844398636224, guid: 44620081988ae31418ba47d439d3b3a1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -17928,8 +18010,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4064082318086430902}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 17.8, y: -0.0000019073486, z: 9}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 17.8, y: 0, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4064082317647679436}
@@ -17938,8 +18020,8 @@ Transform:
   - {fileID: 4064082317529151786}
   - {fileID: 4064082316241510205}
   - {fileID: 4064082317942903669}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 895325414}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!64 &4086667973121193445
 MeshCollider:
@@ -18127,6 +18209,10 @@ PrefabInstance:
     - target: {fileID: 195047168257165368, guid: bc73ee46f0755a5488f7e8316805b135, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 721099203284668277, guid: bc73ee46f0755a5488f7e8316805b135, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 1310153621964876232, guid: bc73ee46f0755a5488f7e8316805b135, type: 3}
       propertyPath: m_Layer
@@ -19136,7 +19222,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 895325414}
     m_Modifications:
     - target: {fileID: 693894514088791873, guid: 8d87905bfd430c9429cd614b633f7ac6, type: 3}
       propertyPath: m_Layer
@@ -19192,7 +19278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6632639808898477743, guid: 8d87905bfd430c9429cd614b633f7ac6, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6632639808898477743, guid: 8d87905bfd430c9429cd614b633f7ac6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19212,7 +19298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6632639808898477743, guid: 8d87905bfd430c9429cd614b633f7ac6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6632639808898477743, guid: 8d87905bfd430c9429cd614b633f7ac6, type: 3}
       propertyPath: m_LocalRotation.y
@@ -19220,7 +19306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6632639808898477743, guid: 8d87905bfd430c9429cd614b633f7ac6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6632639808898477743, guid: 8d87905bfd430c9429cd614b633f7ac6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

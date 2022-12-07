@@ -13,6 +13,8 @@ public class BedInteractable : MonoBehaviour, IInteractable
     [SerializeField] private GameObject openedDoor = null;
     [SerializeField] private OpenDoorScript bedroomDoor = null;
 
+    public GameObject TempEnemy = null;
+
 
     public void Interacted()
     {
@@ -85,6 +87,11 @@ public class BedInteractable : MonoBehaviour, IInteractable
         GameManager.instance.DisplayMessage("They're still looking at me, but it isn't safe to go outside. I will have to wait till morning...", 10);
         yield return new WaitForSeconds(16);
         PortraitManager.instance.SetPhase(3);
-        SceneManager.LoadScene("Ending"); //TODO: Add the escape scene later
+        GameManager.instance.DisplayMessage("Is that sunlight already? Where is it coming from...?", 5);
+        yield return new WaitForSeconds(8);
+        GameManager.instance.FadeIn();
+        GameManager.instance.SwitchInput(GameManager.instance.controls.PlayerControl.Get());
+        TempEnemy.SetActive(true);
+        //SceneManager.LoadScene("Ending"); //TODO: Add the escape scene later
     }
 }

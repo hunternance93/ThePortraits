@@ -1,6 +1,6 @@
 <b>Inspired by the creepypasta "The Portraits"</b>
 
-<b>Director / Lead Developer</b>
+<b>Director / Developer</b>
 Hunter Nance
 
 <b>Re-using some content from "Atama" by Team Zutsuu</b>

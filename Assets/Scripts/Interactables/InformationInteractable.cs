@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InformationInteractable : MonoBehaviour, IInteractable
 {
@@ -12,10 +13,19 @@ public class InformationInteractable : MonoBehaviour, IInteractable
     [SerializeField] private string kaedeDialogue = "";
     [SerializeField] private ToiletInteractable toilet = null;
 
+    [SerializeField] private bool isFrontDoor = false;
+
     private bool hasKaedeSpoken = false;
 
     public void Interacted()
     {
+        if (isFrontDoor)
+        {
+            if (PortraitManager.instance.GetPhase() == 3)
+            {
+                SceneManager.LoadScene("Ending");
+            }
+        }
         if (messageLength < 0) GameManager.instance.DisplayMessage(message);
         else GameManager.instance.DisplayMessage(message, messageLength);
         if (aud != null && !aud.isPlaying) aud.Play();
