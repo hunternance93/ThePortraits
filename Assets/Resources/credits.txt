@@ -5,11 +5,6 @@ Hunter Nance
 
 <b>Re-using some content from "Atama" by Team Zutsuu</b>
 
-<b>Team Zutsuu Members</b>
-Michael "slowbeef" Sawyer
-Christopher "Raqus" Rocco
-Oren Ronen
-
 <b>Artwork of "The Portraits"</b>
 Dorian Finn
 
@@ -20,6 +15,13 @@ Lukas Bobor - Wasteland Cabin
 
 <b>Audio</b>
 FreeSound.Org users:
+InspectorJ - Dripping, Medium, A.wav
+LampEight - Door Open Close Heavy Wooden Hard Loud Creak Seal Theatre
+TylerAM - Footsteps; running; wood; sneakers; consistently close.wav
+Darius Kedros - rat in the attic, possum in the roof.wav
+kwamah_02 - Glass Rising Build Up With Reverb
+milivolt - Keisu temple bell
+lennyboy - ScaryViolins.ogg
 
 Additional Sound Libraries Sampled
 Mixkit.co
