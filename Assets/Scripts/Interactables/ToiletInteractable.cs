@@ -90,16 +90,16 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         POV.m_HorizontalRecentering.m_enabled = true;
         POV.m_VerticalRecentering.m_enabled = true;
         float timer = 0;
-        while (timer < 28)
+        while (timer < 26.5f)
         {
-            POV.m_HorizontalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 28);
-            POV.m_VerticalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 28);
-            POV.m_HorizontalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 28);
-            POV.m_VerticalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 28);
+            POV.m_HorizontalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 26.5f);
+            POV.m_VerticalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 26.5f);
+            POV.m_HorizontalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 26.5f);
+            POV.m_VerticalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 26.5f);
             timer += Time.deltaTime;
             yield return null;
         }
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
 
         doorOpen.Play();
         yield return new WaitForSeconds(3);
