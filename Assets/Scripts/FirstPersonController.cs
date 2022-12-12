@@ -360,7 +360,7 @@ public class FirstPersonController : MonoBehaviour
     {
         #region Movement
 
-        if (playerCanMove && !GameManager.instance.Player.isSightJacking)
+        if (!GameManager.instance.IsShitting && playerCanMove && !GameManager.instance.Player.isSightJacking)
         {
             Vector2 move = GameManager.instance.controls.PlayerControl.Move.ReadValue<Vector2>();
 

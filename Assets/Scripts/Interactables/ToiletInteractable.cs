@@ -63,7 +63,7 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
     private IEnumerator TransitionToToiletCam()
     {
         GameManager.instance.FadeOut();
-        //TODO: Prevent movement while this is happening
+        GameManager.instance.IsShitting = true;
         yield return new WaitForSeconds(1);
         //Set camera
         toiletCam.Priority = 999;
@@ -85,17 +85,18 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         GameManager.instance.FadeIn();
         inspectWindow.SetActive(true);
         while (!HasWindowBeenInspected) yield return null;
+        yield return new WaitForSeconds(1);
         risingTensionAudio.Play();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3.5f);
         POV.m_HorizontalRecentering.m_enabled = true;
         POV.m_VerticalRecentering.m_enabled = true;
         float timer = 0;
-        while (timer < 26.5f)
+        while (timer < 24f)
         {
-            POV.m_HorizontalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 26.5f);
-            POV.m_VerticalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 26.5f);
-            POV.m_HorizontalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 26.5f);
-            POV.m_VerticalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 26.5f);
+            POV.m_HorizontalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 24);
+            POV.m_VerticalRecentering.m_RecenteringTime = Mathf.Lerp(startRecenter, finishRecenter, timer / 24);
+            POV.m_HorizontalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 24);
+            POV.m_VerticalRecentering.m_WaitTime = Mathf.Lerp(startWait, finishWait, timer / 24);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -122,5 +123,6 @@ public class ToiletInteractable : MonoBehaviour, IInteractable
         //TODO: Put portrait back, open front door, set objects to right state
         onFrontDoor.SetActive(true);
         offFrontDoor.SetActive(false);
+        GameManager.instance.IsShitting = false;
     }
 }
