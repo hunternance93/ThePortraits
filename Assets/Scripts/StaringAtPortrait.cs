@@ -122,6 +122,10 @@ public class StaringAtPortrait : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+
+        vig.intensity.value = 0;
+        _CA.intensity.value = 0;
+        ScarySounds.volume = 0;
         endEffectsRoutine = null;
     }
 

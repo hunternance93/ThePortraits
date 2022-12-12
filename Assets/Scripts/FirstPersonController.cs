@@ -355,6 +355,21 @@ public class FirstPersonController : MonoBehaviour
 
             CheckGround();
         }
+
+        if (PortraitManager.instance.GetPhase() == 3)
+        {
+            RaycastHit enemyHit;
+            bool staringAtEnemy = false;
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out enemyHit, 15, LayerMask.GetMask("Enemy"))) //TODO: Find out why assigning interactableMask in editor isn't working
+            {
+                if (!Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, Vector3.Distance(playerCamera.transform.position, enemyHit.point), LayerMask.GetMask("Obstacles")))
+                {  
+                    staringAtEnemy = true; 
+                }
+            }
+            PortraitManager.instance.StaringAtPortrait(staringAtEnemy, true);
+
+        }
     }
 
     void FixedUpdate()

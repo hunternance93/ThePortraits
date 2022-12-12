@@ -34,9 +34,9 @@ public class PortraitManager : MonoBehaviour
         Staring.InstantlyStopAllEffects();
     }
 
-    public void StaringAtPortrait(bool isStaring)
+    public void StaringAtPortrait(bool isStaring, bool overridePhase = false)
     {
-        if (phase == 1) Staring.SetStaring(isStaring);
+        if (phase == 1 || overridePhase) Staring.SetStaring(isStaring);
     }
 
     public void HandlePortraitInteract()
