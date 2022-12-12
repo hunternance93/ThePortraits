@@ -44,6 +44,7 @@ public class TitleScreenStartGameController : MonoBehaviour
 
         GameManager.instance.SwitchInput(GameManager.instance.controls.UI.Get());
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         if (PlayerPrefs.HasKey("HasBeatenGame") && PlayerPrefs.GetInt("HasBeatenGame") == 1)
         {

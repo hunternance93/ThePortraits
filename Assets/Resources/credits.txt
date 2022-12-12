@@ -3,10 +3,13 @@
 <b>Director / Developer</b>
 Hunter Nance
 
-<b>Re-using some content from "Atama" by Team Zutsuu</b>
-
 <b>Artwork of "The Portraits"</b>
 Dorian Finn
+
+<b>Composer</b>
+Jonny McBane
+
+<b>Re-using some content from "Atama" by Team Zutsuu</b>
 
 <b>Unity Store Assets</b>
 Brain Fail Productions - Food Pack Mixed
@@ -19,7 +22,6 @@ InspectorJ - Dripping, Medium, A.wav
 LampEight - Door Open Close Heavy Wooden Hard Loud Creak Seal Theatre
 TylerAM - Footsteps; running; wood; sneakers; consistently close.wav
 Darius Kedros - rat in the attic, possum in the roof.wav
-kwamah_02 - Glass Rising Build Up With Reverb
 milivolt - Keisu temple bell
 lennyboy - ScaryViolins.ogg
 
@@ -32,16 +34,13 @@ MOHRG AN T
 picturetosound.com FX Library
 Iampagan
 
-Field Audio Recordings / Foley
-Christopher "Raqus" Rocco
-
 Some image assets generated with DALL-E
 
 <b>Special Thanks</b>
 <b>Team Zutsuu Members 
 (whose work was re-used for this project)</b>
-Michael "slowbeef" Sawyer
-Christopher "Raqus" Rocco
+slowbeef
+Raqus
 Oren Ronen
 
 <size=500%>

@@ -97,7 +97,8 @@ public class GameManager : MonoBehaviour
         }
 
         //TODO: Figure out where to put this, remove (or change?) resolution options
-        Screen.SetResolution(388, 288, FullScreenMode.FullScreenWindow);
+        //Screen.SetResolution(388, 288, FullScreenMode.FullScreenWindow);
+        Screen.SetResolution(480, 360, FullScreenMode.FullScreenWindow);
 
         if (GetBrightnessSetting() != 1) ApplyBrightness(GetBrightnessSetting());
         ApplyMouseInputProcessors();

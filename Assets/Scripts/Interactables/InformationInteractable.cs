@@ -24,6 +24,7 @@ public class InformationInteractable : MonoBehaviour, IInteractable
             if (PortraitManager.instance.GetPhase() == 3)
             {
                 SceneManager.LoadScene("Ending");
+                return;
             }
         }
         if (messageLength < 0) GameManager.instance.DisplayMessage(message);

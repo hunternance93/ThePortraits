@@ -61,6 +61,7 @@ public class EndingManager : MonoBehaviour
         CG = GetComponent<CanvasGroup>();
 
         currentImageStartPos = CurrentPicture.transform.localPosition;
+        Cursor.visible = false;
         StartScene();
     }
 

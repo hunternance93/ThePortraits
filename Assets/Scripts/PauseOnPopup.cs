@@ -15,5 +15,6 @@ public class PauseOnPopup : MonoBehaviour
     {
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
