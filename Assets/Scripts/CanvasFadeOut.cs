@@ -7,8 +7,11 @@ public class CanvasFadeOut : MonoBehaviour
     [Tooltip("How long the fade should be")]
     public float FadeLength = .5f;
     [SerializeField] private bool fadeOnEnable = false;
+    [SerializeField] private bool fadeOnEnableOnlyOnce = false;
 
     private Image fadeImage = null;
+
+    private bool hasFaded = false;
 
     private void Awake()
     {
@@ -17,7 +20,14 @@ public class CanvasFadeOut : MonoBehaviour
 
     private void OnEnable()
     {
-        if (fadeOnEnable) StartCoroutine(FadeIn());
+        if (fadeOnEnable && ! hasFaded)
+        {
+            StartCoroutine(FadeIn());
+            if (fadeOnEnableOnlyOnce)
+            {
+                hasFaded = true;
+            }
+        }
     }
 
     //Fade out meaning that the black image appears

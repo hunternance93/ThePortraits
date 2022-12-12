@@ -59,7 +59,7 @@ public class BedInteractable : MonoBehaviour, IInteractable
         UpsetStomach = true;
         GameManager.instance.FadeOut();
         GameManager.instance.SwitchInput(GameManager.instance.controls.None.Get());
-        GameManager.instance.DisplayMessage("How the hell am I supposed to sleep with these staring at me? I'm trying to ignore them but it is getting in my head. I'll just rest my head facedown and hope that I can eventually sleep.", 10);
+        GameManager.instance.DisplayMessage("How the hell am I supposed to sleep with these portraits staring at me? I'm trying to ignore them but it is getting in my head. I'll just rest my head facedown and hope that I can eventually sleep.", 10);
         yield return new WaitForSeconds(12);
         audToPlayWhileSleeping.Play();
         yield return new WaitForSeconds(8);
@@ -71,7 +71,6 @@ public class BedInteractable : MonoBehaviour, IInteractable
             yield return null;
         }
         audToPlayWhileSleeping.Stop();
-        //TODO: Sound effects... Scratching?
         //TODO: Make 'portrait' go away
         yield return new WaitForSeconds(3);
         GameManager.instance.FadeIn();

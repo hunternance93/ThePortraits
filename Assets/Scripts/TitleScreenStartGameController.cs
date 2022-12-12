@@ -36,11 +36,14 @@ public class TitleScreenStartGameController : MonoBehaviour
 
     private CanvasGroup TitleParentCG;
 
+    private CanvasFadeOut fader = null;
+
     private void Awake()
     {
         TitleParentCG = TitleParent.GetComponent<CanvasGroup>();
 
-        BlackFadeOutImage.enabled = false;
+        fader = BlackFadeOutImage.GetComponent<CanvasFadeOut>();
+        StartCoroutine(fader.FadeIn());
 
         GameManager.instance.SwitchInput(GameManager.instance.controls.UI.Get());
         Cursor.lockState = CursorLockMode.None;
@@ -103,6 +106,12 @@ public class TitleScreenStartGameController : MonoBehaviour
         }
         TitleParentCG.alpha = 0;
         cg.alpha = 1;
+    }
+
+    public void FadeTitleBackground(bool fadeIn)
+    {
+        if (fadeIn) StartCoroutine(fader.FadeOut());
+        else StartCoroutine(fader.FadeIn());
     }
 
     public void OpenAtamaOnSteam()

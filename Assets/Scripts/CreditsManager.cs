@@ -12,6 +12,8 @@ public class CreditsManager : MonoBehaviour
 
     public GameObject SkipPopup = null;
 
+    public AudioSource audToFade = null;
+
     private float timer = 0;
     public float targetY = 0;
     private Vector3 startPos;
@@ -83,10 +85,12 @@ public class CreditsManager : MonoBehaviour
         float fadeTimer = 0;
         while (fadeTimer < canvasFadeOutTime)
         {
+            audToFade.volume = Mathf.Lerp(1, 0, fadeTimer / canvasFadeOutTime);
             CG.alpha = Mathf.Lerp(1, 0, fadeTimer / canvasFadeOutTime);
             fadeTimer += Time.deltaTime;
             yield return null;
         }
+        audToFade.volume = 0;
         CG.alpha = 0;
         PlayerPrefs.SetInt("HasBeatenGame", 1);
         SceneManager.LoadScene("TitleScreen");
@@ -99,10 +103,12 @@ public class CreditsManager : MonoBehaviour
             float fadeTimer = 0;
             while (fadeTimer < canvasFadeOutTime)
             {
+                audToFade.volume = Mathf.Lerp(1, 0, fadeTimer / canvasFadeOutTime);
                 CG.alpha = Mathf.Lerp(1, 0, fadeTimer / canvasFadeOutTime);
                 fadeTimer += Time.deltaTime;
                 yield return null;
             }
+            audToFade.volume = 0;
             CG.alpha = 0;
             PlayerPrefs.SetInt("HasBeatenGame", 1);
 

@@ -14,6 +14,8 @@ public class EndingManager : MonoBehaviour
     public GameObject SkipPopup = null;
     public Image AdditionalPicture = null;
 
+    public CanvasFadeOut CanvasFader = null;
+
     public SceneList SceneToPlay = SceneList.Intro;
 
     public Sprite[] NormalEndingSprites;
@@ -431,16 +433,27 @@ public class EndingManager : MonoBehaviour
     private IEnumerator EndEnding()
     {  
         yield return StartCoroutine(FadeOutCanvasGroup());
-        StopAllCoroutines();
         scenePlaying = null;
         if (Credits != null) Credits.SetActive(true);
         if (SceneToPlay == SceneList.Intro)
         {
+            GameObject.Find("Canvas").GetComponent<TitleScreenStartGameController>().FadeTitleBackground(true);
+            yield return new WaitForSecondsRealtime(.5f);
             SceneManager.LoadScene("Indoors");
         }
-        if (SceneToPlay == SceneList.CreepyPasta) SceneManager.LoadScene("TitleScreen");
+        if (SceneToPlay == SceneList.CreepyPasta)
+        {
+            GameObject.Find("Canvas").GetComponent<TitleScreenStartGameController>().FadeTitleBackground(true);
+            yield return new WaitForSecondsRealtime(.5f);
+            SceneManager.LoadScene("TitleScreen");
             gameObject.SetActive(false);
+        }
 
-        if (SceneToPlay == SceneList.Ending) SceneManager.LoadScene("Credits");
+        if (SceneToPlay == SceneList.Ending)
+        {
+            StartCoroutine(CanvasFader.FadeOut());
+            yield return new WaitForSecondsRealtime(.5f);
+            SceneManager.LoadScene("Credits");
+        }
     }
 }
