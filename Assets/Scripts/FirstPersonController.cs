@@ -163,6 +163,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void OnStartCrouch(InputAction.CallbackContext ctx)
     {
+        if (GameManager.instance.IsShitting) return;
         if (Time.timeScale != 0 || !isGrounded)
         {
             if (sprintButtonHeld) ignoreSprinting = true;
