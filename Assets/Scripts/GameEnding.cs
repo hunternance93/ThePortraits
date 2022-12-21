@@ -29,15 +29,12 @@ public class GameEnding : MonoBehaviour
     private AsyncOperation reloadScene = null;
     private IEnumerator asyncReloadRoutine = null;
 
-    private const float _gameOverFadeInSpeed = 1.5f;
-    private const int _totalJournalNum = 45;
+    private const float _gameOverFadeInSpeed = 3f;
 
     private Flash storyFlash = null;
 
     [HideInInspector]
     public bool IsGameOver = false;
-
-    private bool retrySelected = false;
 
     private void Start()
     {
@@ -60,22 +57,7 @@ public class GameEnding : MonoBehaviour
         if (!IsGameOver)
         {
             IsGameOver = true;
-
-            EnemyAI enemy = null;
-            try
-            { enemy = enemyThatCaught.gameObject.GetComponentInParent<EnemyAI>();
-            }
-            catch (NullReferenceException e)
-            {
-                Debug.Log("Player was killed by something other than an Enemy object");
-            }
-            bool overrideKillStoryMode = false;
-            if (enemy != null) overrideKillStoryMode = enemy.OverrideKillStoryMode;
-
-            //If enemy is null then that means player fell off map, so for Story mode if this somehow happens then they should still gameover
-            if ((GameManager.instance.CurrentGameMode != GameManager.GameMode.Story && GameManager.instance.CurrentGameMode != GameManager.GameMode.DevCommentary) || enemyThatCaught == null ||
-                (overrideKillStoryMode && GameManager.instance.CurrentGameMode == GameManager.GameMode.Story)) StartCoroutine(GameOverCoroutine(enemyThatCaught));
-            else StartCoroutine(StoryModeDeathCoroutine(enemyThatCaught));
+            StartCoroutine(GameOverCoroutine(enemyThatCaught));
         }
     }
 
@@ -113,17 +95,6 @@ public class GameEnding : MonoBehaviour
         yield return null;
         KaedeVoiceManager.instance.TriggerScream();
 
-        //Prevent hardlock if player game overs while sightjack overlay is appearing
-        SightjackOverlay.SetActive(false);
-        BlinkObject.SetActive(false);
-
-        if (!retrySelected)
-        {
-            //DontDestroyOnLoad(transform.parent.gameObject);
-            asyncReloadRoutine = RetryAsyncLoad(SceneManager.GetActiveScene().name);
-            StartCoroutine(asyncReloadRoutine);
-        }
-
         float time = 0;
         yield return null;
         AudioManager.instance.StopPlayerMovementAudio();
@@ -135,6 +106,8 @@ public class GameEnding : MonoBehaviour
             yield return null;
         }
         GameOverOptionsCanvasGroup.alpha = 1;
+
+        SceneManager.LoadScene("Credits");
     }
 
     private IEnumerator StoryModeDeathCoroutine(Transform enemyThatCaught)

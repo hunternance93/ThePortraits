@@ -59,10 +59,6 @@ public class AudioManager : MonoBehaviour
     public void PlayDeath()
     {
         if (!deathNoise.isPlaying) deathNoise.Play();
-        if (!deathNoiseDentist.isPlaying)
-        {
-            StartCoroutine(PlayDeathNoiseForLength(UnityEngine.Random.Range(0, deathNoiseDentist.clip.length - lengthOfTimeToPlayDeathNoise)));
-        }
     }
 
     public void StopDeathSounds()

@@ -31,6 +31,7 @@ public class CreditsManager : MonoBehaviour
         TextAsset credits = Resources.Load<TextAsset>("credits");
         TMP = GetComponentInChildren<TMPro.TextMeshProUGUI>();
         TMP.text = credits.text;
+        Time.timeScale = 1;
     }
 
     private void OnEnable()
